@@ -55,18 +55,15 @@ result<-abcR(data=M100)
 
 The showHp function plots the hub probabilities.
 ```{r showHp}
-data(resabc)
-showHp(resabc)
+showHp(result)
 ```
 
 The showNp function plots the neighbourhood probabilities.
 ```{r showNp}
-data(resabc)
-showNp(resabc)
+showNp(result)
 ```
 
 The showNetwork function plots the final network.
 ```{r showNetwork}
-data(resabc)
-showNetwork(resabc,.2)
+showNetwork(result,.2)
 ```
