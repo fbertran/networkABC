@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABC algorithm for network reverse-engineering — abc • randABC</title>
+<title>ABC algorithm for network reverse-engineering — abc • networkABC</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -62,7 +62,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">randABC</a>
+        <a class="navbar-link" href="../index.html">networkABC</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
@@ -85,7 +85,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/fbertran/randABC">
+  <a href="https://github.com/fbertran/networkABC">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>ABC algorithm for network reverse-engineering</h1>
-    <small class="dont-index">Source: <a href='https://github.com/fbertran/randABC/blob/master/R/abc.R'><code>R/abc.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/fbertran/networkABC/blob/master/R/abc.R'><code>R/abc.R</code></a></small>
     <div class="hidden name"><code>abc.Rd</code></div>
     </div>
 
@@ -113,7 +113,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>abc</span>(<span class='no'>data</span>, <span class='kw'>clust_coeffs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.33</span>, <span class='fl'>0.66</span>, <span class='fl'>1</span>), <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+    <pre class="usage"><span class='fu'>abcR</span>(<span class='no'>data</span>, <span class='kw'>clust_coeffs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.33</span>, <span class='fl'>0.66</span>, <span class='fl'>1</span>), <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>number_hubs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>number_networks</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>hub_probs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>neighbour_probs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>is_probs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
@@ -131,6 +131,10 @@
     <tr>
       <th>tolerance</th>
       <td><p>: a real value based for the tolerance between  the generated networks and the reference network</p></td>
+    </tr>
+    <tr>
+      <th>number_hubs</th>
+      <td><p>: number of hubs in the network</p></td>
     </tr>
     <tr>
       <th>iterations</th>
@@ -152,16 +156,13 @@
       <th>is_probs</th>
       <td><p>: this needs to be set either to one (if you specify hub_probs and neighbour_probs) or to zero (if neither probabilities are specified). Attention: you should specify both hub_probs and neighbour_probs if is_probs is one. If is_prob is zero these arrays should simply indicate an array of a specified size..</p></td>
     </tr>
-    <tr>
-      <th>number_hub</th>
-      <td><p>: number of hubs in the network</p></td>
-    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>M</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>30</span>),<span class='fl'>10</span>,<span class='fl'>3</span>)
-<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abc</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .C("abc", as.double(data), as.integer(ngenes), as.integer(ntimes),     as.integer(clust_size), as.double(clust_coeffs), as.double(tolerance),     as.integer(number_hubs), as.integer(iterations), as.integer(number_networks),     number_accepted = as.integer(0), dist = as.double(1:number_networks),     hp = as.double(hub_probs), np = as.double(neighbour_probs),     as.integer(is_probs)): "abc" not resolved from current namespace (randABC)</span></div></pre>
+<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abcR</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt;       5% 
+#&gt; 4.916364 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

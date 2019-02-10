@@ -4,31 +4,31 @@ author: "Frédéric Bertrand and Myriam Maumy-Bertrand"
 output: github_document
 ---
 
-[![CRAN status](https://www.r-pkg.org/badges/version/randABC)](https://cran.r-project.org/package=randABC)
+[![CRAN status](https://www.r-pkg.org/badges/version/randABC)](https://cran.r-project.org/package=networkABC)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# netABC
+# networkABC
 
-The goal of netABC is to provide an inference tool based on approximate Bayesian computation to decipher network data and assess the strength of their inferred links.
+The goal of networkABC is to provide an inference tool based on approximate Bayesian computation to decipher network data and assess the strength of their inferred links.
 
 This website and these examples were created by F. Bertrand and M. Maumy-Bertrand.
 
 ## Installation
 
-You can install the released version of netABC from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of networkABC from [CRAN](https://CRAN.R-project.org) with:
 
 
 ```r
-install.packages("netABC")
+install.packages("networkABC")
 ```
 
-You can install the development version of netABC from [github](https://github.com) with:
+You can install the development version of networkABC from [github](https://github.com) with:
 
 
 ```r
-devtools::install_github("fbertran/netABC")
+devtools::install_github("fbertran/networkABC")
 ```
 
 ## Examples
