@@ -42,6 +42,7 @@ devtools::install_github("fbertran/networkABC")
 
 The network_gen allows to simulate networks with given clustering coefficient.
 ```{r networkgen}
+library(networkABC)
 resnet <- network_gen(10,1)
 resnet
 ```
