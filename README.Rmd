@@ -40,24 +40,32 @@ devtools::install_github("fbertran/networkABC")
 
 ## Examples
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-## basic example code
+The network_gen allows to simulate networks with given clustering coefficient.
+```{r networkgen}
+resnet <- network_gen(10,1)
+resnet
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
+The abcR function performs the network reverse engineering with Approximate Bayesian Computation.
+```{r abcR}
+M100<-matrix(rnorm(300),100,3)
+result<-abcR(data=M100)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+The showHp function plots the hub probabilities.
+```{r showHp}
+data(resabc)
+showHp(resabc)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+The showNp function plots the neighbourhood probabilities.
+```{r showNp}
+data(resabc)
+showNp(resabc)
+```
+
+The showNetwork function plots the final network.
+```{r showNetwork}
+data(resabc)
+showNetwork(resabc,.2)
+```
