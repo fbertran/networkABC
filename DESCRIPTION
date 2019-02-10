@@ -1,0 +1,26 @@
+Package: networkABC
+Type: Package
+Title: Network Reverse Engineering with Approximate Bayesian Computation
+Version: 0.0-1
+Date: 2019-02-08
+Depends: R (>= 2.10)
+Imports: RColorBrewer, network, sna
+Suggests: 
+    R.rsp,
+    knitr
+Authors@R: c(
+	person(given = "Frederic", family= "Bertrand", role = c("cre", "aut"), email = "frederic.bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-0837-8281")),
+	person(given = "Myriam", family= "Maumy-Bertrand", role = c("aut"), email = "myriam.maumy-bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-4615-1512")),
+	person(given = "Khadija", family= "Musayeva", role = c("ctb"), email = "khadija@musayeva.net"),
+	person(given = "Nicolas", family= "Jung", role = c("ctb"), email = "nicolas.jung@unistra.fr"))
+Author: Frederic Bertrand [cre, aut] (<https://orcid.org/0000-0002-0837-8281>), Myriam Maumy-Bertrand [aut] (<https://orcid.org/0000-0002-4615-1512>), Khadija Musayeva [ctb], Nicolas Jung [ctb]
+Maintainer: Frederic Bertrand <frederic.bertrand@math.unistra.fr>
+Description: An inference tool based on approximate Bayesian computation to decipher network data and assess the strength of their inferred links.
+NeedsCompilation: Yes
+License: GPL-3
+Encoding: UTF-8
+Classification/MSC: 62E17, 62F15, 62J07, 62P10, 92C42
+VignetteBuilder: R.rsp
+URL: http://www-irma.u-strasbg.fr/~fbertran/, https://github.com/fbertran/networkABC
+BugReports: https://github.com/fbertran/networkABC/issues
+RoxygenNote: 6.1.1
