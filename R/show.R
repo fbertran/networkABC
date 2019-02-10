@@ -2,6 +2,9 @@
 #' @title Plot for the hub probabilities
 #' @param result : The result of the abc algorithm.
 #' 
+#' @examples
+#' data(resabc)
+#' showHp(resabc)
 #' @export
 showHp<-function(result){
   
@@ -20,6 +23,9 @@ showHp<-function(result){
 #' @title Plot for the neighbourhood probabilities
 #' @param result : The result of the abc algorithm.
 #' 
+#' @examples
+#' data(resabc)
+#' showNp(resabc)
 #' @export
 showNp<-function(result){
   
@@ -36,6 +42,9 @@ showNp<-function(result){
 #' @param res : The result of the abc algorithm.
 #' @param min_prob : numeric ; under this probabilitie value, the link between two genes is set to 0. 
 #' 
+#' @examples
+#' data(resabc)
+#' showNetwork(resabc,.2)
 #' @export
 showNetwork<-function(res,min_prob){
   
