@@ -33,31 +33,70 @@ devtools::install_github("fbertran/networkABC")
 
 ## Examples
 
-This is a basic example which shows you how to solve a common problem:
-
-
-```r
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
+The network_gen allows to simulate networks with given clustering coefficient.
 
 ```r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+set.seed(314)
+library(networkABC)
+resnet <- network_gen(10,1)
+resnet
+#> $number_genes
+#> [1] 10
+#> 
+#> $clust_coef
+#> [1] 1
+#> 
+#> $network
+#>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+#>  [1,]    0    0    0    0    0    0    0    1    0     0
+#>  [2,]    1    0    0    0    0    0    0    0    0     0
+#>  [3,]    1    1    0    0    0    0    0   -1    0     0
+#>  [4,]    0    0    0    0   -1    1    1    0    0     0
+#>  [5,]    0    0    0    0    0    0    0    0    0     0
+#>  [6,]    0    0    1    0    0    0    1    0    1    -1
+#>  [7,]    0    0    0    0    0    0    0    0    0    -1
+#>  [8,]    0    0    0    0    0    0    0    0    0     0
+#>  [9,]    0    0    0    0    0    0    0    0    0     0
+#> [10,]    0    0    0    0    0    0    0    0    0     0
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+The abcR function performs the network reverse engineering with Approximate Bayesian Computation.
 
-You can also embed plots, for example:
+```r
+set.seed(314)
+M10<-matrix(rnorm(30),10,3)
+result<-abcR(data=M10)
+#>       5% 
+#> 4.294415
+```
 
-<img src="man/figures/README-pressure-1.png" title="plot of chunk pressure" alt="plot of chunk pressure" width="100%" />
+The showHp function plots the hub probabilities.
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+```r
+showHp(result)
+```
+
+<img src="man/figures/README-showHp-1.png" title="plot of chunk showHp" alt="plot of chunk showHp" width="100%" />
+
+```
+#>   gene.hubs hubs.proba
+#> 1         4  0.1547619
+#> 2         6  0.2482993
+#> 3         8  0.2193878
+```
+
+The showNp function plots the neighbourhood probabilities.
+
+```r
+showNp(result)
+```
+
+<img src="man/figures/README-showNp-1.png" title="plot of chunk showNp" alt="plot of chunk showNp" width="100%" />
+
+The showNetwork function plots the final network.
+
+```r
+showNetwork(result,.2)
+```
+
+<img src="man/figures/README-showNetwork-1.png" title="plot of chunk showNetwork" alt="plot of chunk showNetwork" width="100%" />
