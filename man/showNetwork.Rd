@@ -14,3 +14,7 @@ showNetwork(res, min_prob)
 \description{
 Plot the final network.
 }
+\examples{
+data(resabc)
+showNetwork(resabc,.2)
+}

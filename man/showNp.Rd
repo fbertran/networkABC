@@ -12,3 +12,7 @@ showNp(result)
 \description{
 Plot for the neighbourhood probabilities ; there is one probability for each pair of node in the network.
 }
+\examples{
+data(resabc)
+showNp(resabc)
+}

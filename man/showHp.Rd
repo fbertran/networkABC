@@ -12,3 +12,7 @@ showHp(result)
 \description{
 Plot for the hub probabilities ; there is one probability for each node in the network.
 }
+\examples{
+data(resabc)
+showHp(resabc)
+}
