@@ -48,16 +48,16 @@ resnet
 #> 
 #> $network
 #>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-#>  [1,]    0    0    0    0    0    0    0    1    0     0
-#>  [2,]    1    0    0    0    0    0    0    0    0     0
-#>  [3,]    1    1    0    0    0    0    0   -1    0     0
-#>  [4,]    0    0    0    0   -1    1    1    0    0     0
+#>  [1,]    0    0    0    0    0    0    0    0    0     0
+#>  [2,]    0    0    0    0    0    0    0   -1    0     1
+#>  [3,]   -1   -1    0   -1   -1    0    1    0    0     0
+#>  [4,]    0    1    0    0    0    1    0    0    0     0
 #>  [5,]    0    0    0    0    0    0    0    0    0     0
-#>  [6,]    0    0    1    0    0    0    1    0    1    -1
-#>  [7,]    0    0    0    0    0    0    0    0    0    -1
+#>  [6,]    0    0    0    0    0    0    0    0    0     0
+#>  [7,]   -1    0    0    1    0    0    0    0   -1     0
 #>  [8,]    0    0    0    0    0    0    0    0    0     0
 #>  [9,]    0    0    0    0    0    0    0    0    0     0
-#> [10,]    0    0    0    0    0    0    0    0    0     0
+#> [10,]    0    0    0    0    0    0    0    1    0     0
 ```
 
 The abcR function performs the network reverse engineering with Approximate Bayesian Computation.
@@ -67,7 +67,7 @@ set.seed(314)
 M10<-matrix(rnorm(30),10,3)
 result<-abcR(data=M10)
 #>       5% 
-#> 4.294415
+#> 4.235279
 ```
 
 The showHp function plots the hub probabilities.
@@ -80,9 +80,9 @@ showHp(result)
 
 ```
 #>   gene.hubs hubs.proba
-#> 1         4  0.1547619
-#> 2         6  0.2482993
-#> 3         8  0.2193878
+#> 1         4  0.1738241
+#> 2         6  0.2392638
+#> 3         8  0.1942740
 ```
 
 The showNp function plots the neighbourhood probabilities.

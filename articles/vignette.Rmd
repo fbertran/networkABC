@@ -80,8 +80,8 @@ This algorithm is partially based on the algorithm by Di Camillo, Barbara, Giann
 Let us call $V$ the set of nodes to be connected in the graph $G$ at the current iteration $t$ and $H$ the set of nodes to be connected at iteration $t + 1$. $V$ is initialized as $V = {1, ...,N}$, that is, with all the $N$ nodes in $G$, whereas $H$ is initialized
 as the empty set $H$. Nodes are then linked to each other through an iterative procedure, which consists of three main steps, explained in detail below.
 1. Three candidate modules are generated. The structure is sampled from a pool of motifs, with possibility of random changes. The number of node of the module is set at random. In this algorithm we have : feedback motif, feedforward motifs and loops.
-2. A score is assigned to each module, and one of the three modules is sampled with probability proportional to this score; let us denote the sampled module by M and the number of its nodes by $m$.
-3. $m$ nodes are sampled from $V$ and linked to each other in the graph $G$, according to the selected module structure $M$; $V$ is updated by deleting the m sampled nodes; $H$ is updated by adding the nodes. At the end of this process, $V$ is empty whereas $H$ is composed of a lot of motifs. To link the motifs together, we have to choose one node in  each motif that is the first position. This set of nodes is then considered as set $V$ .
+1. A score is assigned to each module, and one of the three modules is sampled with probability proportional to this score; let us denote the sampled module by M and the number of its nodes by $m$.
+1. $m$ nodes are sampled from $V$ and linked to each other in the graph $G$, according to the selected module structure $M$; $V$ is updated by deleting the m sampled nodes; $H$ is updated by adding the nodes. At the end of this process, $V$ is empty whereas $H$ is composed of a lot of motifs. To link the motifs together, we have to choose one node in  each motif that is the first position. This set of nodes is then considered as set $V$ .
 # Running the ABC algorithm
 ## The simmpliest way
 ```{r, cache=TRUE}

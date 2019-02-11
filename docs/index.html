@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -44,6 +44,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/vignette.html">Using the networkABC package</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -102,29 +114,29 @@
 <a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; $network</span></a>
 <a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  [1,]    0    0   -1   -1    0   -1    0    1    0     0</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  [2,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  [3,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  [4,]    0    0    0    0    0    0    1    0   -1     0</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  [1,]    0    0    0    0    0    0    0    0    0     0</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  [2,]    0    0    1    0    0    0    0    0    0    -1</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  [3,]    0    0    0    0    0    0   -1    0    0     0</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  [4,]   -1    0    0    0   -1    0    0    0    0     1</span></a>
 <a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  [6,]    0    0    0    0    0    0    0    0    0     0</span></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  [6,]    0    1    1    0    0    0    0    0    0     0</span></a>
 <a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;  [7,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;  [8,]    0    0    0    0   -1    0   -1    0    0     0</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt;  [9,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; [10,]    1    1    0    0    0    0    0    0    0     0</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    0    0     0</span></a>
+<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt;  [9,]    0    0    0   -1    0    1    0    1    0     0</span></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; [10,]    0    0    0    0    0    0    0    0    0     0</span></a></code></pre></div>
 <p>The abcR function performs the network reverse engineering with Approximate Bayesian Computation.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">M10&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3">result&lt;-<span class="kw"><a href="reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M10)</a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;       5% </span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 4.193466</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 4.239412</span></a></code></pre></div>
 <p>The showHp function plots the hub probabilities.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/showHp.html">showHp</a></span>(result)</a></code></pre></div>
 <p><img src="reference/figures/README-showHp-1.png" width="100%"></p>
 <pre><code>#&gt;   gene.hubs hubs.proba
-#&gt; 1         4  0.1623932
-#&gt; 2         6  0.2457265
-#&gt; 3         8  0.1837607</code></pre>
+#&gt; 1         3  0.1959596
+#&gt; 2         6  0.2424242
+#&gt; 3         8  0.2282828</code></pre>
 <p>The showNp function plots the neighbourhood probabilities.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/showNp.html">showNp</a></span>(result)</a></code></pre></div>
 <p><img src="reference/figures/README-showNp-1.png" width="100%"></p>
