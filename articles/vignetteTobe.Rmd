@@ -1,0 +1,104 @@
+
+
+
+2.1 Details about the algorithm
+This algorithm is partially based on the algorithm by Di Camillo, Barbara, Gianna Toffolo, and Claudio Cobelli. ”A gene
+network simulator to assess reverse engineering algorithms.” Annals of the New York Academy of Sciences.
+Let us call V the set of nodes to be connected in the graph G at the current iteration t and H the set of nodes to be
+connected at iteration t + 1. V is initialized as V = {1, ...,N}, that is, with all the N nodes in G, whereas H is initialized
+as the empty set H. Nodes are then linked to each other through an iterative procedure, which consists of three main steps,
+5
+explained in detail below.
+1. Three candidate modules are generated. The structure is sampled from a pool of motifs, with possibility of random
+changes. The number of node of the module is set at random. In this algorithm we have : feedback motif, feedforward
+motifs and loops.
+2. A score is assigned to each module, and one of the three modules is sampled with probability proportional to this
+score; let us denote the sampled module by M and the number of its nodes by m.
+3. m nodes are sampled from V and linked to each other in the graph G, according to the selected module structure M;
+V is updated by deleting the m sampled nodes; H is updated by adding the nodes.
+At the end of this process, V is empty whereas H is composed of a lot of motifs. To link the motifs together, we have
+to choose one node in each motif that is the first position. This set of nodes is then considered as set V .
+3 Running the ABC algorithm
+3.1 The simmpliest way
+set.seed(123)
+M<-matrix(rnorm(30),10,3)
+result<-abc(data=M)
+## 5%
+## 4.542773
+We can plot the results in three different ways :
+  showHp(result)
+6
+0.00 0.05 0.10 0.15 0.20 0.25
+## gene.hubs hubs.proba
+## 1 4 0.2087542
+## 2 5 0.2323232
+## 3 10 0.2558923
+This plot show the probabilities for each gene of being a hub. The following shows the probability for each couple of
+genes of being linked :
+  showNp(result)
+7
+1 2 3 4 5 6 7 8 9 10
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0.0 0.1 0.2 0.3 0.4
+Specifying a probability cutoff (the minimal probability for which we can say that two genes are linked), we can plot
+the network :
+  showNetwork(result,0.3)
+## Loading required package: sna
+## sna: Tools for Social Network Analysis
+## Version 2.3-2 created on 2014-01-13.
+## copyright (c) 2005, Carter T. Butts, University of California-Irvine
+## For citation information, type citation("sna").
+## Type help(package="sna") to get started.
+##
+8
+##
+## Attaching package: ’sna’
+##
+## The following object is masked from ’package:network’:
+##
+## %c%
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+In this plot, the diameter of a node is linked to its number of childreen whereas the color is linked to the probability for
+each gene of being a hub.
+You can also have a look on the error :
+  9
+hist(result$dist)
+Histogram of result$dist
+result$dist
+Frequency
+4 5 6 7 8 9
+0 50 100 150 200 250 300
+3.2 Using ABC algorithm with full options
+You can specify all the arguments of the ABC function ; we recommand to check the help manual.
+For example :
+  result<-abc(data=M,
+              clust_coeffs=0.33, #you can specify more than one clustering coefficient
+              tolerance=3.5, #maximal distance between simulated and real data
+              10
+              # to accept the network
+              number_hubs=3,#the number of hubs
+              iterations=10, #number of iterations
+              number_networks=1000000,#number of network simulated at each iteration
+              hub_probs=NA,#specify the a priori probabilty for each gene to be a hub
+              neighbour_probs=NA,#specify the a priori probability for each couple
+              #of gene to be linked
+              is_probs=1)#set this last option to one.
+11

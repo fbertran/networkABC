@@ -1,8 +1,8 @@
 Package: networkABC
 Type: Package
 Title: Network Reverse Engineering with Approximate Bayesian Computation
-Version: 0.0-1
-Date: 2019-02-08
+Version: 0.1-1
+Date: 2019-02-10
 Depends: R (>= 2.10)
 Imports: RColorBrewer, network, sna
 Suggests: 
