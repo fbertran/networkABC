@@ -1,0 +1,132 @@
+---
+title: "Using the networkABC package"
+author: "Frédéric Bertrand, Nicolas Jung, Myriam Maumy-Bertrand"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Using the networkABC package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Abstract
+Elucidating gene regulatory network is an important step towards under- standing the normal cell physiology and complex pathological phenotype. Reverse- engineering consists in using gene expression over time or over different experimental conditions to discover the structure of the gene network in a targeted cellular process. The fact that gene expression
+data are usually noisy, highly correlated, and have high dimensionality explains the need for specific statistical methods to reverse engineer the underlying network. Among known methods, Approximate Bayesian Computation (ABC) algorithms have not been very well studied. Due to the computational overhead their application is also limited to a small number of
+genes. In this work we have developed a new multi-level ABC approach that has less computational cost. At the first level, the method captures the global properties of the network, such as scale-freeness and cluster- ing coefficients, whereas the second level is targeted to capture local properties, including the probability of each couple of genes being linked.
+
+# Overview
+![Steps of the network ABC package.](grapheABC.png){width=800px}
+
+# Generation of a network topology
+
+Load the `networkABC` package.
+```{r}
+library(networkABC)
+```
+
+## Examples and checks
+To generate a network, the number of node and the targeted clustering coefficient should be specified. For example, the following produces a network with 100 nodes and a targeted clustering coefficient of 0.33 :
+```{r, cache=TRUE}
+net<-network_gen(100,0.33)
+```
+
+Then, we can plot the network :
+```{r, messages=FALSE, fig.width=8, fig.height=8}
+require(network)
+plot(network(net$network))
+```
+
+Here is a simulation to show that the algorithm produces networks with a clustering coefficient close to the targeted one
+```{r}
+require(PCIT)
+f<-function(a){
+  a<-a[!is.nan(a)]
+}
+```
+We generate 500 networks with 500 nodes with a targeted clustering coefficient of 0.33
+```{r, cache=TRUE}
+set.seed(1234)
+clco<-rep(0,500)
+for(i in 1:500){
+  N<-network_gen(500,.33)$net
+  N<-N+t(N)
+  clco[i]<-mean(f(abs(PCIT::clusteringCoefficient(N))))
+}
+```
+Here is the result :
+```{r}
+mean(clco)
+```
+```{r}
+sd(clco)
+```
+```{r, message=FALSE, fig.width=8, fig.height=8}
+ggplot2::qplot(clco)
+```
+
+Notice that the algorithm cannot reach all desired values of clustering coefficients, because the network has to be scalefree.
+
+For example, a clustering coefficient of 1 implies that every couple of nodes are linked together ; such a network is obviously not scale-free.
+
+## Details about the algorithm
+This algorithm is partially based on the algorithm by Di Camillo, Barbara, Gianna Toffolo, and Claudio Cobelli. ”A gene network simulator to assess reverse engineering algorithms.” *Annals of the New York Academy of Sciences*.
+
+Let us call $V$ the set of nodes to be connected in the graph $G$ at the current iteration $t$ and $H$ the set of nodes to be connected at iteration $t + 1$. $V$ is initialized as $V = {1, ...,N}$, that is, with all the $N$ nodes in $G$, whereas $H$ is initialized
+as the empty set $H$. Nodes are then linked to each other through an iterative procedure, which consists of three main steps, explained in detail below.
+1. Three candidate modules are generated. The structure is sampled from a pool of motifs, with possibility of random changes. The number of node of the module is set at random. In this algorithm we have : feedback motif, feedforward motifs and loops.
+1. A score is assigned to each module, and one of the three modules is sampled with probability proportional to this score; let us denote the sampled module by M and the number of its nodes by $m$.
+1. $m$ nodes are sampled from $V$ and linked to each other in the graph $G$, according to the selected module structure $M$; $V$ is updated by deleting the m sampled nodes; $H$ is updated by adding the nodes. At the end of this process, $V$ is empty whereas $H$ is composed of a lot of motifs. To link the motifs together, we have to choose one node in  each motif that is the first position. This set of nodes is then considered as set $V$ .
+
+# Running the ABC algorithm
+
+## The simpliest way
+```{r, cache=TRUE}
+set.seed(123)
+M<-matrix(rnorm(30),10,3)
+result<-abcR(data=M)
+```
+We can plot the results in three different ways :
+```{r, fig.width=8, fig.height=8}
+networkABC::showHp(result)
+```
+This plot show the probabilities for each gene of being a hub. The following shows the probability for each couple of genes of being linked :
+```{r, fig.width=8, fig.height=8}
+showNp(result)
+```
+Specifying a probability cutoff (the minimal probability for which we can say that two genes are linked), we can plot the network :
+```{r, fig.width=8, fig.height=8}
+showNetwork(result,0.3)
+```
+In this plot, the diameter of a node is linked to its number of childreen whereas the color is linked to the probability for each gene of being a hub.
+
+You can also have a look on the error :
+```{r, fig.width=8, fig.height=8}
+hist(result$dist)
+```
+
+## Using ABC algorithm with full options
+You can specify all the arguments of the ABC function ; we recommand to check the help manual.
+
+For example :
+```{r, eval=FALSE}
+result<-abcR(data=M,
+            clust_coeffs=0.33, #you can specify more than one clustering coefficient
+            tolerance=3.5, #maximal distance between simulated and real data
+            # to accept the network
+            number_hubs=3,#the number of hubs
+            iterations=10, #number of iterations
+            number_networks=1000000,#number of network simulated at each iteration
+            hub_probs=NA,#specify the a priori probabilty for each gene to be a hub
+            neighbour_probs=NA,#specify the a priori probability for each couple
+            #of gene to be linked
+            is_probs=1)#set this last option to one.
+```
