@@ -18,7 +18,8 @@ typedef struct List_str {
         struct List_str *next;
         } List;
 
-
+void createPoolof3Motifs(Pool *pool, int size, int precise_number_nodes, double clust_coef);
+void cleanupPool(Pool *pool);
 #endif
 
 

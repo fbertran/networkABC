@@ -8,6 +8,8 @@
 #For the cached chunks of README.Rmd
 ^cache*$
 ^README_cache*$
+^vignettes/vignette_cache*$
+^inst/doc/vignette_cache*$
 #If README too big, not on CRAN but only on git
 ^man/figures*$
 ^README\.Rmd$
@@ -16,3 +18,6 @@
 ^fullrespdf*$
 ^inst/animation*$
 ^articles*$
+^src/CMakeLists.txt*$
+^src/cmake-build-debug*$
+^src/.idea*$

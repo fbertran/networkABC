@@ -7,9 +7,12 @@ Copyright 2015 K.Musayeva <khmusayeva@gmail.com>.
 #include <string.h>
 #include <math.h>
 #include <unistd.h>
+#include <time.h>
 #include "graph.h"
 #include "pool.h"
 #include "network.h"
+#include "network_random_R.h"
+#include "utils.h"
 #define SQUARE(x) (x*x)
 
 

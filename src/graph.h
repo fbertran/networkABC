@@ -25,11 +25,17 @@ typedef struct graph_str {
 
 
 Graph *createGraph(int, int);
+void resetGraph(Graph *graph);
 void addEdge(int, int, int, Graph*);
 int addRandomEdge(Graph*, int);
 double computeClusteringCoefficient(Graph*);
 void printGraph(Graph*);
 void restructureGraph(Graph*, int*, int*, int*, int*);
+void computeDegree(Graph *graph);
+void ameliorateClusteringCoefficient(Graph *graph, double CM);
+int addRandomEdgeTest(Graph *graph, int number_of_edges);
+void graphcpy(Graph *dest, Graph *src);
+void cleanupGraph(Graph *graph);
 
 #endif
 

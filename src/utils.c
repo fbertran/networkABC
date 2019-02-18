@@ -14,82 +14,78 @@ int sign(double x) {
 
 
 int sample_int(int min, int max) {
-	return(min + rand()/(RAND_MAX/(max - min + 1)+1));
-	}
+    return(min + rand()/(RAND_MAX/(max - min + 1)+1));
+}
 
 
 double sample_double(int min, int max) {
 	return(min+rand()/(RAND_MAX/(max-min)));
 	}
 
-
 void shuffle(int *array, size_t n) {
-	if (n > 1) {
-		size_t i;
-		for (i = 0; i < n - 1; i++) {
-		          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-        		  int t = array[j];
-		          array[j] = array[i];
-		          array[i] = t;
-        		}
-    		}	
-	}
-
+    if (n > 1) {
+        size_t i;
+        for (i = 0; i < n - 1; i++) {
+            size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
+            int t = array[j];
+            array[j] = array[i];
+            array[i] = t;
+        }
+    }
+}
 
 
 void swap(int *array, int a, int b) {
-	int tmp=array[b];
-	array[b]=array[a];
-	array[a]=tmp;
-	}
-
+    int tmp=array[b];
+    array[b]=array[a];
+    array[a]=tmp;
+}
 
 
 int sample(int size, double *probs) {
-        int i;
-        double sum=0.0;
+    int i;
+    double sum=0.0;
 
-        double *cumul_probs=calloc((size+1), sizeof(double));
+    double *cumul_probs=calloc((size+1), sizeof(double));
 
-        for(i=0; i<size; ++i) {
-                sum+=probs[i];
-                }
-	
-	if(sum<0.0000001) {
-		return(sample_int(0, size-1));
-		}
+    for(i=0; i<size; ++i) {
+        sum+=probs[i];
+    }
 
-
-        for(i=0; i<size; ++i) {
-                probs[i]/=sum;
-                //printf("%lf ", probs[i]);
-                }
-        //printf("\n");
+    if(sum<0.0000001) {
+        return(sample_int(0, size-1));
+    }
 
 
-        for(i=1; i<=size; ++i) {
-                cumul_probs[i]=cumul_probs[i-1]+probs[i-1];
-                //printf("%lf ", cumul_probs[i]);
-                }
-        //printf("\n");
+    for(i=0; i<size; ++i) {
+        probs[i]/=sum;
+        //printf("%lf ", probs[i]);
+    }
+    //printf("\n");
 
-        double random_number=((double)rand()/RAND_MAX);
-        //printf("random number=%lf \n", random_number);
 
-        int elm;
+    for(i=1; i<=size; ++i) {
+        cumul_probs[i]=cumul_probs[i-1]+probs[i-1];
+        //printf("%lf ", cumul_probs[i]);
+    }
+    //printf("\n");
 
-        for(i=1; i<=size; i++) {
-              if(random_number<=cumul_probs[i] && random_number>cumul_probs[i-1]) {
-                                elm=i-1;
-                                break;
-                                }
-                        }
+    double random_number=((double)rand()/RAND_MAX);
+    //printf("random number=%lf \n", random_number);
 
-        free(cumul_probs);
+    int elm;
 
-        return elm;
+    for(i=1; i<=size; i++) {
+        if(random_number<=cumul_probs[i] && random_number>cumul_probs[i-1]) {
+            elm=i-1;
+            break;
         }
+    }
 
+    free(cumul_probs);
+
+    return elm;
+}
 
 
 void sample_multiple(int size, double *probs, int *elms, int *track_elms) {
@@ -147,23 +143,22 @@ void sample_multiple(int size, double *probs, int *elms, int *track_elms) {
 
 
 void sampleFromGaussian(double mu, double sigma, double *Z) {
-	static double U, V;
-	static int phase = 0;
+    static double U, V;
+    static int phase = 0;
 
-	if(phase == 0) {
-		U = (rand() + 1.0) / (RAND_MAX + 2.0);
-		V = rand() / (RAND_MAX + 1.0);
-		*Z = sqrt(-2 * log(U)) * sin(2 * M_PI * V);
-		}
-	else {
-		*Z = sqrt(-2 * log(U)) * cos(2 * M_PI * V);
-		}
+    if(phase == 0) {
+        U = (rand() + 1.0) / (RAND_MAX + 2.0);
+        V = rand() / (RAND_MAX + 1.0);
+        *Z = sqrt(-2 * log(U)) * sin(2 * M_PI * V);
+    }
+    else {
+        *Z = sqrt(-2 * log(U)) * cos(2 * M_PI * V);
+    }
 
-	phase=1-phase;
-	*Z=mu+sigma*(*Z);
+    phase=1-phase;
+    *Z=mu+sigma*(*Z);
 
-	}
-
+}
 
 
 void getPowerLawDegreeDistribution(double *array, int number, double gamma) {
@@ -241,25 +236,24 @@ int sort(int *input, int *nodes, int size) {
 }
 
 
-
 double generateRandomNumber(int min, int max) {
-        double range = (max - min);
-        double div = RAND_MAX / range;
-        return(min+(rand()/div));
-        }
+    double range = (max - min);
+    double div = RAND_MAX / range;
+    return(min+(rand()/div));
+}
 
 
 //computes the factorial
 int factorial(int n) {
-	int i, result=1;
+    int i, result=1;
 
-	for (i=1; i<=n; i++){
-		result*=i;
-		}
+    for (i=1; i<=n; i++){
+        result*=i;
+    }
 
-	return(result);
+    return(result);
 
-	}
+}
 
 
 //used for permutations
@@ -274,21 +268,21 @@ void rotate_left(int *v, int start, int n){
 
 //Computes all permutations and stores in the array, in this case perm_array
 //The algorithm is taken from the "Practical Algorithms in C++"
-void permute(int *v, int start, int n, int **perm_array, int number_perm){
-  int i, j, p;
-  static int m=0;
-  for(p=0; p<n; ++p) {
+void permute(int *v, int start, int n, int **perm_array, int number_perm) {
+    int i, j, p;
+    static int m=0;
+    for(p=0; p<n; ++p) {
         perm_array[m%number_perm][p]=v[p];
+    }
+    ++m;
+    if (start < n) {
+        for (i = n-2; i >= start; i--) {
+            for (j = i + 1; j < n; j++) {
+                swap(v, i, j);
+                permute(v, i+1, n, perm_array, number_perm);
+            }
+            rotate_left(v, i, n);
         }
-  ++m;
-  if (start < n) {
-    for (i = n-2; i >= start; i--) {
-      for (j = i + 1; j < n; j++) {
-        swap(v, i, j);
-        permute(v, i+1, n, perm_array, number_perm);
-           }
-      rotate_left(v, i, n);
-    	}
     }
 
 }

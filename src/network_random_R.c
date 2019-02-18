@@ -10,9 +10,11 @@
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 #include "graph.h"
 #include "pool.h"
 #include "network.h"
+#include "utils.h"
 #define SIZE 3 //size of a pool of motifs.
 
 
@@ -195,26 +197,24 @@ void cleanup(Network *self) {
 
 
 
-Network* initNetwork(int number_of_nodes) {
-        Network *network=malloc(sizeof(Network));
-        network->number_of_nodes=number_of_nodes;
-        network->initV=initV;
-        network->shuffleV=shuffleV;
+	Network *initNetwork(int number_of_nodes) {
+	Network *network=malloc(sizeof(Network));
+	network->number_of_nodes=number_of_nodes;
+	network->initV=initV;
+	network->shuffleV=shuffleV;
 	network->initH=initH;
-        network->initGraph=initGraph;
-        network->initPool=initPool;
-        network->generate=generate;
-        network->cleanup=cleanup;
-        network->resetNetwork=resetNetwork;
+	network->initGraph=initGraph;
+	network->initPool=initPool;
+	network->generate=generate;
+	network->cleanup=cleanup;
+	network->resetNetwork=resetNetwork;
 	network->initV(network);
-        network->shuffleV(network);
-        network->initH(network);
-        network->initGraph(network);
-        network->initPool(network);
+	network->shuffleV(network);
+	network->initH(network);
+	network->initGraph(network);
+	network->initPool(network);
 	return network;
-	}
-
-
+}
 
 
 /**

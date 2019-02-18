@@ -1,3 +1,7 @@
+# networkABC 0.3-0
+
+* bug fix to enable mac osx C code compatibility
+
 # networkABC 0.2-0
 
 * vignette created

@@ -4,7 +4,9 @@
  */
 
 #include "graph.h"
-
+#include "stdlib.h"
+#include <stdio.h>
+#include "utils.h"
 
 Graph *createGraph(int number_of_nodes, int type) {
         Graph *graph=malloc(sizeof(Graph));
@@ -35,18 +37,18 @@ Graph *createGraph(int number_of_nodes, int type) {
 
 void resetGraph(Graph *graph) {
 
-	int i,j;
-	for(i=0; i<graph->number_of_vertices; ++i) {
-                graph->vertices[i]->degree=0;
-                graph->vertices[i]->index=i;
-                graph->vertices[i]->connectivity=0;
-                graph->vertices[i]->is_regulator=0;
-		for(j=0; j<graph->number_of_vertices; ++j) {
-                	graph->edges[i][j]=0;
-                	}
-                }
+    int i,j;
+    for(i=0; i<graph->number_of_vertices; ++i) {
+        graph->vertices[i]->degree=0;
+        graph->vertices[i]->index=i;
+        graph->vertices[i]->connectivity=0;
+        graph->vertices[i]->is_regulator=0;
+        for(j=0; j<graph->number_of_vertices; ++j) {
+            graph->edges[i][j]=0;
+        }
+    }
 
-	}
+}
 
 
 /**
@@ -108,20 +110,20 @@ int addRandomEdge(Graph *graph, int number_of_edges) {
  * Modification!!!
  * Adds edges between regulators as well.
  */
-int addRandomEdgeTest(Graph *graph, int number_of_edges) { 
+int addRandomEdgeTest(Graph *graph, int number_of_edges) {
 	int number_of_nodes=graph->number_of_vertices;
 
 	if(number_of_nodes<2*number_of_edges) {
 		number_of_edges=((number_of_nodes-1)*number_of_nodes)/2;
 		//return(1);
-		}
+	}
 
 	int *array=malloc(number_of_nodes*sizeof(int));
 	int i;
 	for(i=0; i<number_of_nodes;i++){
 		array[i]=i;
-		}
-	shuffle(array, number_of_nodes);	
+	}
+	shuffle(array, number_of_nodes);
 
 	int v1, v2, k=0, j=0;
 	i=0;
@@ -130,18 +132,17 @@ int addRandomEdgeTest(Graph *graph, int number_of_edges) {
 		v1=array[i];
 		for(j=i+1; j<number_of_nodes && k<number_of_edges; ++j) {
 			v2=array[j];
-		//	printf("%d and %d\n", v1, v2);
+			//	printf("%d and %d\n", v1, v2);
 			if(graph->edges[v1][v2]==0 && graph->edges[v2][v1]==0) {
 				addEdge(v1, v2, 0, graph);
 				k+=1;
-				}
 			}
-		 }
+		}
+	}
 
 	free(array);
 	return(0);
-	}
-
+}
 
 
 /**
@@ -212,31 +213,30 @@ void ameliorateClusteringCoefficient(Graph *graph, double CM) {
 	int i, random_connectivity, desired_number_links;
 	double mean, std=1.0, tmp;
 	Vertex *vertex;
-	
+
 	for(i=0;i<graph->number_of_vertices;++i) {
 
 		vertex=graph->vertices[i];
 
 		mean=((double)CM*(vertex->degree)*(vertex->degree-1))/2.0;
 
-		sampleFromGaussian(mean, std, &tmp);	
+		sampleFromGaussian(mean, std, &tmp);
 
 		if(tmp<=0) {continue;}
 
-		random_connectivity=tmp+0.5;		
+		random_connectivity=tmp+0.5;
 
 		desired_number_links=random_connectivity-vertex->connectivity;
 
 		if(desired_number_links>0) {
-			addEdgeSelectedNode(i, desired_number_links, graph);								
+			addEdgeSelectedNode(i, desired_number_links, graph);
 			computeClusteringCoefficient(graph);
 			if(graph->clustering_coefficient>=CM) {break;}
-			}
-
-		}	
+		}
 
 	}
 
+}
 
 
 /**
@@ -335,19 +335,17 @@ void computeDegree(Graph *graph) {
 
 	for(j=0;j<n;++j) {
 		graph->vertices[j]->degree=0;
-		}	
-	
+	}
+
 	for(i=0;i<n;++i) {
 		for(j=0;j<n;++j) {
 			if(graph->edges[i][j]!=0 || graph->edges[j][i]!=0) {
 				graph->vertices[i]->degree+=1;
-				}
-
 			}
+
 		}
 	}
-
-
+}
 
 
 /**
@@ -410,18 +408,17 @@ void graphcpy(Graph *dest, Graph *src) {
 	int i, j;
 	for(i=0; i<src->number_of_vertices; ++i) {
 		dest->vertices[i]->is_regulator=src->vertices[i]->is_regulator;
-        	dest->vertices[i]->connectivity=src->vertices[i]->connectivity;
-	        dest->vertices[i]->degree=src->vertices[i]->degree;
+		dest->vertices[i]->connectivity=src->vertices[i]->connectivity;
+		dest->vertices[i]->degree=src->vertices[i]->degree;
 
 		for(j=0; j<src->number_of_vertices; ++j) {
 			dest->edges[i][j]=src->edges[i][j];
-			}
-
 		}
-
 
 	}
 
+
+}
 
 
 /**
@@ -518,15 +515,15 @@ void restructureGraph1(Graph *graph, int *nodes, int *labels, int* array1, int* 
 void cleanupGraph(Graph *graph) {
 	int i;
 
-        for(i=0; i<graph->number_of_vertices; ++i) {
+	for(i=0; i<graph->number_of_vertices; ++i) {
 		free(graph->edges[i]);
 		free(graph->vertices[i]);
-                  }
+	}
 
 	free(graph->vertices);
 	free(graph->edges);
 	free(graph);
 
-        }
+}
 
 

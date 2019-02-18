@@ -2,8 +2,11 @@
  * This file provides the functionality of building a pool of motifs.
  * Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>.
  */
+#include "stdlib.h"
 #include "graph.h"
 #include "pool.h"
+#include "motif.h"
+#include "utils.h"
 #define MIN_NODES 2
 #define MAX_NODES 8
 #define CM 0.3 //this is a clustering coefficient
@@ -117,53 +120,51 @@ void createPoolof3Motifs(Pool *pool, int size, int precise_number_nodes, double 
 		if(precise_number_nodes>0) {
 			type=sample_int(1, 3);
 			max_nodes=precise_number_nodes;
-			}
+		}
 
 		else {
 			type=types[i];
 			max_nodes=sample_int(MIN_NODES, MAX_NODES);
-			}
+		}
 
 		//max_nodes=(precise_number_nodes==0)?sample_int(MIN_NODES, MAX_NODES):precise_number_nodes;
 
 		if(max_nodes<3) {
 			graph=generateSIM(precise_number_nodes, max_nodes);
-			}
+		}
 
 		else {
-        		switch(type) {
-                		case 1:
-	                		graph=generateSIM(precise_number_nodes, max_nodes);
-	        	        break;
-        	        	case 2:
-		        	        graph=generateDOR(precise_number_nodes, max_nodes);
-        	        	break;
-	                	case 3:	
-			                graph=generateFL(precise_number_nodes, max_nodes);
-        		        break;
-                		}
-        		}
+			switch(type) {
+				case 1:
+					graph=generateSIM(precise_number_nodes, max_nodes);
+					break;
+				case 2:
+					graph=generateDOR(precise_number_nodes, max_nodes);
+					break;
+				case 3:
+					graph=generateFL(precise_number_nodes, max_nodes);
+					break;
+			}
+		}
 
 		//addRandomEdge(graph, 1);
 		//addRandomEdgeTest(graph, 1);
 		computeClusteringCoefficient(graph);
 
 		//printf("The clustering coefficient of the graph is %lf \n", graph->clustering_coefficient);
-		//if the clustering coefficient is less than the specified number then try to improve it.  
-		
+		//if the clustering coefficient is less than the specified number then try to improve it.
+
 		if(graph->clustering_coefficient<CM && graph->number_of_vertices>2) {
 			//ameliorateClusteringCoefficient(graph, CM);
 			ameliorateClusteringCoefficient(graph, clust_coef);
-			}
+		}
 
 		pool->graphs[i]=graph;
 		//if(precise_number_nodes>0) printGraph(pool->graphs[i]);
 
-		}
-		//return pool;
-		}
-
-
+	}
+	//return pool;
+}
 
 
 /**
@@ -182,11 +183,11 @@ Graph *sampleMotif(Pool *pool) {
  * Cleans up the memory
  */
 void cleanupPool(Pool *pool) {
-        int i;
-        for(i=0; i<pool->size; ++i) {
+	int i;
+	for(i=0; i<pool->size; ++i) {
 		cleanupGraph(pool->graphs[i]);
-                  }
-        free(pool->graphs);
-        }
+	}
+	free(pool->graphs);
+}
 
 
