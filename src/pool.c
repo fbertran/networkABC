@@ -54,7 +54,7 @@ void createPool(Pool *pool, int size, int precise_number_nodes) {
 	pool->size=size;
 	pool->graphs=malloc(size*sizeof(Graph*));
 
-	int i, type, max_nodes, max_regulators;
+	int i, type, max_nodes; //, max_regulators removed definition due to warning: unused variable 'max_regulators' [-Wunused-variable]
 	//int types[]={1,2,3};
 
 	Graph *graph;
@@ -110,7 +110,7 @@ void createPoolof3Motifs(Pool *pool, int size, int precise_number_nodes, double 
 	pool->size=size;
 	pool->graphs=(Graph**)malloc(size*sizeof(Graph*));
 
-	int i, type, max_nodes, max_regulators;
+	int i, type, max_nodes; //, max_regulators removed definition due to warning: unused variable 'max_regulators' [-Wunused-variable]
 	int types[]={1,2,3};
 
 	Graph *graph;

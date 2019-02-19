@@ -1,6 +1,11 @@
+# networkABC 0.4-0
+
+* commented printf from abc_R.c, graph.c, network_random_R.C (CRAN requirement)
+* removed [-Wunused-variable] (and some others) warnings
+
 # networkABC 0.3-0
 
-* bug fix to enable mac osx C code compatibility
+* bug fix to enable C code compatibility for macos
 
 # networkABC 0.2-0
 

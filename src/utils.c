@@ -73,7 +73,7 @@ int sample(int size, double *probs) {
     double random_number=((double)rand()/RAND_MAX);
     //printf("random number=%lf \n", random_number);
 
-    int elm;
+    int elm=0; //int elm; replaced due to note: initialize the variable 'elm' to silence this warning
 
     for(i=1; i<=size; i++) {
         if(random_number<=cumul_probs[i] && random_number>cumul_probs[i-1]) {
@@ -90,7 +90,7 @@ int sample(int size, double *probs) {
 
 void sample_multiple(int size, double *probs, int *elms, int *track_elms) {
         double random_number, max;
-        int i, j, t, k, elm, z=0;
+        int i, j, k, elm, z=0; //t, removed definition due to warning: unused variable 't' [-Wunused-variable]
 
 	double *cumul_probs=(double*)malloc(size*sizeof(double));
 

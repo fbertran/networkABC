@@ -21,7 +21,8 @@ Copyright 2015 K.Musayeva <khmusayeva@gmail.com>.
 * Reads gene expression into a two-dimensional array 
 */
 int read_data(double *array, int number_genes, int number_times, double ***data) {
-        double entry;
+	//double entry; removed definition due to warning: unused variable 'entry' [-Wunused-variable]
+
         int i, j;
 
 	//printf("Number of time points: %d \n", *number_times);
@@ -51,10 +52,12 @@ void writeArray(double *dist, int size, char *output) {
 
         FILE* fo = fopen(output, "w");
 
-        if(fo == NULL) {
+  /* Comment to cope with CRAN requirements
+   if(fo == NULL) {
                 printf("Error in opening the file \n");
                 }
-
+   */
+  
 	int i;
         for(i=0; i<size; ++i) {
                 fprintf(fo,"%lf\n", dist[i]);
@@ -74,9 +77,11 @@ void writeSimulatedData(double **data, int number_times, int number_genes, char 
 
         FILE* fo = fopen(output, "w");
 
-        if(fo == NULL) {
+  /* Comment to cope with CRAN requirements
+   if(fo == NULL) {
                 printf("Error in opening the file \n");
                 }
+   */
 
 
         int i,j;
@@ -100,9 +105,11 @@ void writeSimulatedData(double **data, int number_times, int number_genes, char 
 void writeOmega(int number_genes, double *omega, char *output) {
         FILE* fo = fopen(output, "w");
 
-        if(fo == NULL) {
+  /* Comment to cope with CRAN requirements
+   if(fo == NULL) {
                 printf("Error in opening the file \n");
                 }
+   */
 
 
 	int i,j;
@@ -141,7 +148,7 @@ void generateOmega(double *omega, int number_genes, int min, int max) {
  */
 void generateOmegaFromNetwork(Graph *G, double *omega, int number_genes, int min, int max) {
         int row, col;
-        int index_x, index_y, source, dest;
+		//int index_x, index_y, source, dest; removed definition due to warning: unused variable [-Wunused-variable]
 
         for(row=0;row<number_genes;row++) {
                 for(col=0;col<number_genes;col++) {
@@ -164,7 +171,9 @@ int readOmega(char *input, double *omega, int number_genes) {
 
 	FILE* fi = fopen(input, "r");
 	if(fi == NULL) {
-		printf("Cannot open the file: %s", input);
+	  /* Comment to cope with CRAN requirements
+	   printf("Cannot open the file: %s", input);
+	   */
 		return(1);
              }
 
@@ -252,11 +261,13 @@ void simulateDataOneStepBack(double **data, double **simulated_data, int number_
  * */
 void generateData(char *input, int number_genes, int number_times, double ***data, double *omega, double *F) {
 
-	char buf[2000];
+	//char buf[2000]; removed definition due to warning: unused variable 'buf' [-Wunused-variable]
         FILE* fi = fopen(input, "r");
-        if(fi == NULL) {
+        /* Comment to cope with CRAN requirements
+         if(fi == NULL) {
                 printf("Cannot open the file: %s\n", input);
              }
+         */
 
 
 	*data=(double **)malloc(number_genes*sizeof(double));
@@ -275,7 +286,7 @@ void generateData(char *input, int number_genes, int number_times, double ***dat
 
         fclose(fi);
 
-	int number_of_clusters=number_genes;
+	//int number_of_clusters=number_genes; removed definition due to warning: unused variable 'number_of_clusters' [-Wunused-variable]
 	int *gene_to_cluster=malloc(number_genes*sizeof(int));
 	for(i=0;i<number_genes;++i) {
 		gene_to_cluster[i]=i+1;
@@ -368,7 +379,7 @@ void compute_hub_probs(double *probs, double *cumul_probs, int *hubs, int number
  */
 void label_hubs(int *labels, double *probs, double *cumul_probs, int number_genes, int number_hubs) {
         double random_number, max;
-        int i, j, t, k, elm, z=0;
+        int i, j, k, elm; 	//, t, z=0 removed definition due to warning: unused variable 't', 'z' [-Wunused-variable]
 	for(i=0; i<number_genes; i++) {
 		labels[i]=i;
 		}
@@ -437,7 +448,7 @@ void compute_neighbour_freq(Graph *graph, int *neighbour_freqs, int number_genes
 void compute_neighbour_probs(double *neighbour_probs, int *neighbour_freqs, int number_genes, int hits) {
 
         int i, j;
-        double sum;
+		//double sum; removed definition due to warning: unused variable 'sum' [-Wunused-variable]
 
         for(i=0; i<number_genes; ++i) {
                 for(j=0; j<number_genes; ++j) {
@@ -497,7 +508,7 @@ void label_non_hubs(Graph *graph, double *neighbour_probs, int *labels, int *nod
 		return;
 		}
 	
-	int i, j, num_connections, position;
+	int i, j, position;		//num_connections, removed definition due to warning: unused variable 'num_connections' [-Wunused-variable]
 	double fraction, temp=0.0;
 	int unlabeled_size=graph->number_of_vertices-labeled_size;
 
@@ -570,7 +581,8 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 	int number_inner_iter=*pnumber_inner_iter;
 	int number_genes=*pnumber_genes;
 	int number_times=*pnumber_times;
-	double clust_coef;
+	//double clust_coef; removed definition due to warning: unused variable 'clust_coef' [-Wunused-variable]
+
 
 	//printf("number_genes=%d, number_times=%d, tolerance=%lf, number_of_hubs=%d, number_outer_iteration=%d, number_inner_iteration=%d, is_probs=%d, clust_size=%d\n", number_genes, number_times, tolerance, number_hubs, number_outer_iter, number_inner_iter, *is_probs, *pclust_size);
 
@@ -595,7 +607,7 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
        	int *array1 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
        	int *array2 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
 		
-	int i, j, t, l, m=0, p, q;
+	int i, j, l, p, q;	//, t, m=0; removed definition due to warning: unused variable 't', 'm' [-Wunused-variable]
 
 	int c=number_hubs*(number_hubs-1)/2; 
 	int *place_holder=malloc(c*sizeof(int));
@@ -652,8 +664,10 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 
 	for(j=0; j<number_outer_iter; ++j) {
 		hits=0;
+	  /* Comment to cope with CRAN requirements
 		printf("===============================\n");
 		printf("Iteration=%d\n", j+1);
+	 */
 		//printf("Tolerance=%lf\n", tolerance);
 
 		for(i=0; i<number_inner_iter; ++i) {
@@ -793,9 +807,13 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 			}
 
 		//printf("Tolerance:%lf\n", tolerance);	
-		printf("Accepted:%d\n", hits);	
+		/* Comment to cope with CRAN requirements
+		 printf("Accepted:%d\n", hits);	
+		*/
 		if(hits<10) {
+		  /* Comment to cope with CRAN requirements
 			printf("\nAccepted number of nodes is too small or zero.\n");	
+		  */
 			break;
 			}
 
@@ -817,13 +835,15 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 		compute_neighbour_probs(neighbour_probs, neighbour_freqs, number_genes, hits);
 		compute_clust_probs(prob_clust_coeffs, freq_clust_coeffs, *pclust_size);
 		
-                printf("Probabilities of clustering coefficients:\n");
-	
+		/* Comment to cope with CRAN requirements
+		 printf("Probabilities of clustering coefficients:\n");
+		
 		for(p=0; p<*pclust_size; ++p) {
                         printf("%lf ", prob_clust_coeffs[p]);
                         }
                 printf("\n");
-
+		 */
+		
 		/*
    		for(p=0; p<number_genes; ++p) {
        			for(q=0; q<number_genes; ++q) {

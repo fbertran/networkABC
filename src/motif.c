@@ -26,7 +26,7 @@ Graph *generateSIM(int precise_number_nodes, int max_nodes) {
     Graph *graph=createGraph(number_of_nodes, 1); //this is a motif of type 1
     graph->vertices[regulator_node]->is_regulator=1;
     double random_value;
-    int i, result[number_of_nodes-1];
+    int i; //, result[number_of_nodes-1]; removed definition due to warning: unused variable 'result' [-Wunused-variable]
 
     for(i=0; i<number_of_nodes; ++i) {
         if(i==regulator_node) continue;

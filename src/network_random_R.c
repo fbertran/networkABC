@@ -70,9 +70,11 @@ void resetNetwork(Network *self) {
 
 void writeAdjacencyMatrix(Graph *graph, char *output) {
         FILE* fo = fopen(output, "w");
-        if(fo == NULL) {
+  /* Comment to cope with CRAN requirements
+   if(fo == NULL) {
                 printf("Error in opening the file \n");
                 }
+   */
 
         //fprintf(fo,"i j\n");
         int number_of_vertices=graph->number_of_vertices;
@@ -99,9 +101,11 @@ void writeGraph(Graph *graph, char *output) {
 
         FILE* fo = fopen(output, "w");
 
-        if(fo == NULL) {
+  /* Comment to cope with CRAN requirements
+   if(fo == NULL) {
 		printf("Error in opening the file \n");
 		}
+   */
 
 	
  	fprintf(fo,"i j\n");
@@ -131,7 +135,7 @@ void generate(Network *self, int number_of_nodes, int recursion, double clust_co
 
 	Graph *motif, *mappedMotif;
 	int i, k, j, track_regulators=0, q=0, remaining_nodes=number_of_nodes, m=0;
-	int counter=0, loop=0;
+	int counter=0; //loop=0 removed definition due to warning: unused variable 'loop' [-Wunused-variable]
 
 	while(counter<number_of_nodes-1) {
 		createPoolof3Motifs(self->pool, SIZE, 0, clust_coef);

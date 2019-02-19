@@ -149,7 +149,7 @@ int addRandomEdgeTest(Graph *graph, int number_of_edges) {
  * Adds edges between the neighbours of a given node.
  */
 static void addEdgeSelectedNode(int index, int number_of_links, Graph *graph) {
-	int i, j, k=0;
+	int i; //, j, k=0 removed definition due to warning: unused variable 'j', 'k' [-Wunused-variable]
 	int *array=malloc(graph->number_of_vertices*sizeof(int));
 	int number_of_vertices=graph->number_of_vertices;
 
@@ -352,8 +352,8 @@ void computeDegree(Graph *graph) {
  * Prints out the graph structure
  */
 void printGraph(Graph *graph) {
-        Vertex *vertex;
-        int i,j,index;
+    //    Vertex *vertex;  //Vertex removed definition due to warning: unused variable 'Vertex' [-Wunused-variable]
+    //    int i,j,index;   //int i,j,index removed definition due to warning: unused variable 'i', 'j', 'index' [-Wunused-variable]
 
 	//printf("Type of the graph %d \n", graph->type);
 	//printf("Number of regulators %d \n", graph->number_of_regulators);
@@ -372,12 +372,14 @@ void printGraph(Graph *graph) {
 
 	//printf("Number of vertices %d \n", graph->number_of_vertices);
 
+	/* Comment to cope with CRAN requirements
         for(i=0; i<graph->number_of_vertices; ++i) {
 		for(j=0; j<graph->number_of_vertices; ++j) {	
 			printf("%d ", graph->edges[i][j]);
                 	}
 		printf("\n");
         	}
+	 */
 
 
 	/*
@@ -426,7 +428,7 @@ void graphcpy(Graph *dest, Graph *src) {
  */
 void restructureGraph(Graph *graph, int *nodes, int *labels, int* array1, int* array2) {
   int row, col;
-  int index_x, index_y, source, dest;
+  int index_x; //, index_y, source, dest removed definition due to warning: unused variable 'index_y', 'source', 'dest' [-Wunused-variable]
 
 
   //permute rows
@@ -466,7 +468,7 @@ void restructureGraph(Graph *graph, int *nodes, int *labels, int* array1, int* a
  */
 void restructureGraph1(Graph *graph, int *nodes, int *labels, int* array1, int* array2, int *config) {
   int row, col;
-  int index_x, index_y, source, dest;
+  int index_x;//, index_y, source, dest removed definition due to warning: unused variable 'index_y', 'source', 'dest' [-Wunused-variable]
 
 	  for(row=0;row<graph->number_of_vertices;row++) {
 		 graph->vertices[nodes[row]]->index=labels[row];
