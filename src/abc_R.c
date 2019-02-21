@@ -1,7 +1,10 @@
 /**
-This program realizes the ABC algorithm.
-Copyright 2015 K.Musayeva <khmusayeva@gmail.com>.
-*/
+ * This program realizes the ABC algorithm.
+ * 2015. Author K.Musayeva <khmusayeva@gmail.com>
+ * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * Copyright (c) Universite de Strasbourg and CNRS
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,3 +1,8 @@
+//
+// 2019-02-19. Author F. Bertrand <fbertran@math.unistra.fr>
+// Copyright (c) Universite de Strasbourg and CNRS
+//
+
 #include <stdlib.h> // for NULL
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>

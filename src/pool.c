@@ -1,7 +1,10 @@
 /**
  * This file provides the functionality of building a pool of motifs.
- * Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>.
+ * 2015. Author K.Musayeva <khmusayeva@gmail.com>
+ * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * Copyright (c) Universite de Strasbourg and CNRS
  */
+
 #include "stdlib.h"
 #include "graph.h"
 #include "pool.h"

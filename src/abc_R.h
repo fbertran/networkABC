@@ -1,10 +1,8 @@
 //
-// Created by Frédéric Bertrand on 2019-02-20.
+// 2019-02-20. Author F. Bertrand <fbertran@math.unistra.fr>
+// Copyright (c) Universite de Strasbourg and CNRS
 //
-//#include <Rinternals.h> // for SEXP
-//extern SEXP abc(SEXP data_array, SEXP pnumber_genes, SEXP pnumber_times, SEXP pclust_size, SEXP clust_coeffs, SEXP ptolerance, SEXP pnumber_hubs, SEXP pnumber_outer_iter, SEXP pnumber_inner_iter, SEXP number_accepted, SEXP dist_array, SEXP hub_probs, SEXP rneighbour_probs, SEXP is_probs);
-//extern SEXP spline_value(SEXP knots, SEXP coeff, SEXP order, SEXP x, SEXP deriv);
-
+  
 #ifndef SRC_ABC_R_H
 #define SRC_ABC_R_H
 

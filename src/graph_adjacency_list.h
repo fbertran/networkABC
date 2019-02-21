@@ -1,7 +1,9 @@
 /**
 * Adjacency list for the graph
-* Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>
-**/
+ * 2015. Author K.Musayeva <khmusayeva@gmail.com>
+ * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * Copyright (c) Universite de Strasbourg and CNRS
+ */
 
 typedef struct vertex_str {
 	int index;

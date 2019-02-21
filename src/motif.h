@@ -1,5 +1,6 @@
 //
-// Created by Frédéric Bertrand on 2019-02-18.
+// 2019-02-18. Author F. Bertrand <fbertran@math.unistra.fr>
+// Copyright (c) Universite de Strasbourg and CNRS
 //
 
 #ifndef SRC_MOTIF_H

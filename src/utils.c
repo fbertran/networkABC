@@ -1,7 +1,10 @@
-/**
- * Some utility functions
- * Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>
- * */
+/*
+ * Misc functions
+ * 2015. Author K.Musayeva <khmusayeva@gmail.com>
+ * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * Copyright (c) Universite de Strasbourg and CNRS
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>

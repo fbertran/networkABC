@@ -1,7 +1,9 @@
 /**
  * This file provides the functionality of construction of a genetic network
  * partially based on the  algorithm by Di Camillo, Barbara, Gianna Toffolo, and Claudio Cobelli. "A gene network simulator to assess reverse engineering algorithms." Annals of the New York Academy of Sciences 1158.1 (2009): 125-142.
- * Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>.
+ * 2015. Author K.Musayeva <khmusayeva@gmail.com>
+ * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * Copyright (c) Universite de Strasbourg and CNRS
  */
 
 #include <stdlib.h>
