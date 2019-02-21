@@ -6,6 +6,7 @@
 #include "graph.h"
 #include "stdlib.h"
 #include <stdio.h>
+#include <R_ext/Print.h>
 #include "utils.h"
 
 Graph *createGraph(int number_of_nodes, int type) {
@@ -353,8 +354,9 @@ void computeDegree(Graph *graph) {
  */
 void printGraph(Graph *graph) {
     //    Vertex *vertex;  //Vertex removed definition due to warning: unused variable 'Vertex' [-Wunused-variable]
-    //    int i,j,index;   //int i,j,index removed definition due to warning: unused variable 'i', 'j', 'index' [-Wunused-variable]
-
+    //    int index;   //int index removed definition due to warning: unused variable 'index' [-Wunused-variable]
+       int i,j;   //int i,j removed definition due to warning: unused variable 'i', 'j' [-Wunused-variable]
+    
 	//printf("Type of the graph %d \n", graph->type);
 	//printf("Number of regulators %d \n", graph->number_of_regulators);
 
@@ -372,14 +374,14 @@ void printGraph(Graph *graph) {
 
 	//printf("Number of vertices %d \n", graph->number_of_vertices);
 
-	/* Comment to cope with CRAN requirements
-        for(i=0; i<graph->number_of_vertices; ++i) {
+	// Updated to Rprintf to cope with CRAN requirements
+	for(i=0; i<graph->number_of_vertices; ++i) {
 		for(j=0; j<graph->number_of_vertices; ++j) {	
-			printf("%d ", graph->edges[i][j]);
+			Rprintf("%d ", graph->edges[i][j]);
                 	}
-		printf("\n");
+		Rprintf("\n");
         	}
-	 */
+	
 
 
 	/*

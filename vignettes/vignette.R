@@ -7,9 +7,6 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 library(networkABC)
 
-## ---- cache=TRUE---------------------------------------------------------
-net<-network_gen(100,0.33)
-
 ## ---- messages=FALSE, fig.width=8, fig.height=8--------------------------
 require(network)
 plot(network(net$network))
@@ -20,15 +17,6 @@ f<-function(a){
   a<-a[!is.nan(a)]
 }
 
-## ---- cache=TRUE---------------------------------------------------------
-set.seed(1234)
-clco<-rep(0,500)
-for(i in 1:500){
-  N<-network_gen(500,.33)$net
-  N<-N+t(N)
-  clco[i]<-mean(f(abs(PCIT::clusteringCoefficient(N))))
-}
-
 ## ------------------------------------------------------------------------
 mean(clco)
 
@@ -37,11 +25,6 @@ sd(clco)
 
 ## ---- message=FALSE, fig.width=8, fig.height=8---------------------------
 ggplot2::qplot(clco)
-
-## ---- cache=TRUE---------------------------------------------------------
-set.seed(123)
-M<-matrix(rnorm(30),10,3)
-result<-abcR(data=M)
 
 ## ---- fig.width=8, fig.height=8------------------------------------------
 networkABC::showHp(result)

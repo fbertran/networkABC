@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
       <h1>Using the networkABC package</h1>
                         <h4 class="author">Frédéric Bertrand, Nicolas Jung, Myriam Maumy-Bertrand</h4>
             
-            <h4 class="date">2019-02-11</h4>
+            <h4 class="date">2019-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/fbertran/networkABC/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
@@ -108,35 +108,46 @@
 <h1 class="hasAnchor">
 <a href="#generation-of-a-network-topology" class="anchor"></a>Generation of a network topology</h1>
 <p>Load the <code>networkABC</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(networkABC)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(networkABC)</code></pre></div>
 <div id="examples-and-checks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples-and-checks" class="anchor"></a>Examples and checks</h2>
 <p>To generate a network, the number of node and the targeted clustering coefficient should be specified. For example, the following produces a network with 100 nodes and a targeted clustering coefficient of 0.33 :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">net&lt;-<span class="kw"><a href="../reference/network_gen.html">network_gen</a></span>(<span class="dv">100</span>,<span class="fl">0.33</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">net&lt;-<span class="kw"><a href="../reference/network_gen.html">network_gen</a></span>(<span class="dv">100</span>,<span class="fl">0.33</span>)</code></pre></div>
 <p>Then, we can plot the network :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(network)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/network/topics/network">network</a></span>(net<span class="op">$</span>network))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(network)
+<span class="co">#&gt; Loading required package: network</span>
+<span class="co">#&gt; network: Classes for Relational Data</span>
+<span class="co">#&gt; Version 1.13.0.1 created on 2015-08-31.</span>
+<span class="co">#&gt; copyright (c) 2005, Carter T. Butts, University of California-Irvine</span>
+<span class="co">#&gt;                     Mark S. Handcock, University of California -- Los Angeles</span>
+<span class="co">#&gt;                     David R. Hunter, Penn State University</span>
+<span class="co">#&gt;                     Martina Morris, University of Washington</span>
+<span class="co">#&gt;                     Skye Bender-deMoll, University of Washington</span>
+<span class="co">#&gt;  For citation information, type citation("network").</span>
+<span class="co">#&gt;  Type help("network-package") to get started.</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/network/topics/network">network</a></span>(net<span class="op">$</span>network))</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
 <p>Here is a simulation to show that the algorithm produces networks with a clustering coefficient close to the targeted one</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(PCIT)</a>
-<a class="sourceLine" id="cb4-2" title="2">f&lt;-<span class="cf">function</span>(a){</a>
-<a class="sourceLine" id="cb4-3" title="3">  a&lt;-a[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/is.finite">is.nan</a></span>(a)]</a>
-<a class="sourceLine" id="cb4-4" title="4">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(PCIT)
+<span class="co">#&gt; Loading required package: PCIT</span>
+f&lt;-<span class="cf">function</span>(a){
+  a&lt;-a[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/is.finite">is.nan</a></span>(a)]
+}</code></pre></div>
 <p>We generate 500 networks with 500 nodes with a targeted clustering coefficient of 0.33</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1234</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">clco&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,<span class="dv">500</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</a>
-<a class="sourceLine" id="cb5-4" title="4">  N&lt;-<span class="kw"><a href="../reference/network_gen.html">network_gen</a></span>(<span class="dv">500</span>,.<span class="dv">33</span>)<span class="op">$</span>net</a>
-<a class="sourceLine" id="cb5-5" title="5">  N&lt;-N<span class="op">+</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(N)</a>
-<a class="sourceLine" id="cb5-6" title="6">  clco[i]&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw">f</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(PCIT<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/PCIT/topics/clusteringCoefficient">clusteringCoefficient</a></span>(N))))</a>
-<a class="sourceLine" id="cb5-7" title="7">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1234</span>)
+clco&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,<span class="dv">500</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){
+  N&lt;-<span class="kw"><a href="../reference/network_gen.html">network_gen</a></span>(<span class="dv">500</span>,.<span class="dv">33</span>)<span class="op">$</span>net
+  N&lt;-N<span class="op">+</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(N)
+  clco[i]&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw">f</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(PCIT<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/PCIT/topics/clusteringCoefficient">clusteringCoefficient</a></span>(N))))
+}</code></pre></div>
 <p>Here is the result :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(clco)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; [1] 0.3221064</span></a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/sd">sd</a></span>(clco)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&gt; [1] 0.03351272</span></a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span>(clco)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(clco)
+<span class="co">#&gt; [1] 0.3306789</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/sd">sd</a></span>(clco)
+<span class="co">#&gt; [1] 0.02874285</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span>(clco)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
 <p>Notice that the algorithm cannot reach all desired values of clustering coefficients, because the network has to be scalefree.</p>
 <p>For example, a clustering coefficient of 1 implies that every couple of nodes are linked together ; such a network is obviously not scale-free.</p>
@@ -154,43 +165,102 @@
 <div id="the-simpliest-way" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-simpliest-way" class="anchor"></a>The simpliest way</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2">M&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb9-3" title="3">result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M)</a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt;       5% </span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt; 4.513539</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)
+M&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)
+result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M)
+<span class="co">#&gt; First run of abc to find tolerance</span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=1</span>
+<span class="co">#&gt; Accepted:1000</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.325000 0.349000 0.326000 </span>
+<span class="co">#&gt; Tolerance value</span>
+<span class="co">#&gt;       5% </span>
+<span class="co">#&gt; 4.523488 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Beginning main run of abc</span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=1</span>
+<span class="co">#&gt; Accepted:45</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.488889 0.311111 0.200000 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=2</span>
+<span class="co">#&gt; Accepted:109</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.522936 0.266055 0.211009 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=3</span>
+<span class="co">#&gt; Accepted:139</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.654676 0.201439 0.143885 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=4</span>
+<span class="co">#&gt; Accepted:163</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.705521 0.196319 0.098160 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=5</span>
+<span class="co">#&gt; Accepted:154</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.753247 0.181818 0.064935 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=6</span>
+<span class="co">#&gt; Accepted:210</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.819048 0.142857 0.038095 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=7</span>
+<span class="co">#&gt; Accepted:200</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.860000 0.120000 0.020000 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=8</span>
+<span class="co">#&gt; Accepted:163</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.865031 0.110429 0.024540 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=9</span>
+<span class="co">#&gt; Accepted:232</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.909483 0.077586 0.012931 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=10</span>
+<span class="co">#&gt; Accepted:238</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.907563 0.079832 0.012605</span></code></pre></div>
 <p>We can plot the results in three different ways :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">networkABC<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/networkABC/topics/showHp">showHp</a></span>(result)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">networkABC<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/networkABC/topics/showHp">showHp</a></span>(result)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-10-1.png" width="768"></p>
 <pre><code>#&gt;   gene.hubs hubs.proba
-#&gt; 1         4  0.2378378
-#&gt; 2         5  0.2396396
-#&gt; 3        10  0.2666667</code></pre>
+#&gt; 1         4  0.2282913
+#&gt; 2         5  0.2394958
+#&gt; 3        10  0.2521008</code></pre>
 <p>This plot show the probabilities for each gene of being a hub. The following shows the probability for each couple of genes of being linked :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/showNp.html">showNp</a></span>(result)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/showNp.html">showNp</a></span>(result)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-11-1.png" width="768"> Specifying a probability cutoff (the minimal probability for which we can say that two genes are linked), we can plot the network :</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/showNetwork.html">showNetwork</a></span>(result,<span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/showNetwork.html">showNetwork</a></span>(result,<span class="fl">0.3</span>)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-12-1.png" width="768"> In this plot, the diameter of a node is linked to its number of childreen whereas the color is linked to the probability for each gene of being a hub.</p>
 <p>You can also have a look on the error :</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(result<span class="op">$</span>dist)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(result<span class="op">$</span>dist)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-13-1.png" width="768"></p>
 </div>
 <div id="using-abc-algorithm-with-full-options" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-abc-algorithm-with-full-options" class="anchor"></a>Using ABC algorithm with full options</h2>
-<p>You can specify all the arguments of the ABC function ; we recommand to check the help manual.</p>
+<p>You can specify all the arguments of the ABC function: more details in the help manual.</p>
 <p>For example :</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M,</a>
-<a class="sourceLine" id="cb15-2" title="2">            <span class="dt">clust_coeffs=</span><span class="fl">0.33</span>, <span class="co">#you can specify more than one clustering coefficient</span></a>
-<a class="sourceLine" id="cb15-3" title="3">            <span class="dt">tolerance=</span><span class="fl">3.5</span>, <span class="co">#maximal distance between simulated and real data</span></a>
-<a class="sourceLine" id="cb15-4" title="4">            <span class="co"># to accept the network</span></a>
-<a class="sourceLine" id="cb15-5" title="5">            <span class="dt">number_hubs=</span><span class="dv">3</span>,<span class="co">#the number of hubs</span></a>
-<a class="sourceLine" id="cb15-6" title="6">            <span class="dt">iterations=</span><span class="dv">10</span>, <span class="co">#number of iterations</span></a>
-<a class="sourceLine" id="cb15-7" title="7">            <span class="dt">number_networks=</span><span class="dv">1000000</span>,<span class="co">#number of network simulated at each iteration</span></a>
-<a class="sourceLine" id="cb15-8" title="8">            <span class="dt">hub_probs=</span><span class="ot">NA</span>,<span class="co">#specify the a priori probabilty for each gene to be a hub</span></a>
-<a class="sourceLine" id="cb15-9" title="9">            <span class="dt">neighbour_probs=</span><span class="ot">NA</span>,<span class="co">#specify the a priori probability for each couple</span></a>
-<a class="sourceLine" id="cb15-10" title="10">            <span class="co">#of gene to be linked</span></a>
-<a class="sourceLine" id="cb15-11" title="11">            <span class="dt">is_probs=</span><span class="dv">1</span>)<span class="co">#set this last option to one.</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M,
+            <span class="dt">clust_coeffs=</span><span class="fl">0.33</span>, <span class="co">#you can specify more than one clustering coefficient</span>
+            <span class="dt">tolerance=</span><span class="fl">3.5</span>, <span class="co">#maximal distance between simulated and real data</span>
+            <span class="co"># to accept the network</span>
+            <span class="dt">number_hubs=</span><span class="dv">3</span>,<span class="co">#the number of hubs</span>
+            <span class="dt">iterations=</span><span class="dv">10</span>, <span class="co">#number of iterations</span>
+            <span class="dt">number_networks=</span><span class="dv">1000000</span>,<span class="co">#number of network simulated at each iteration</span>
+            <span class="dt">hub_probs=</span><span class="ot">NA</span>,<span class="co">#specify the a priori probabilty for each gene to be a hub</span>
+            <span class="dt">neighbour_probs=</span><span class="ot">NA</span>,<span class="co">#specify the a priori probability for each couple</span>
+            <span class="co">#of gene to be linked</span>
+            <span class="dt">is_probs=</span><span class="dv">1</span>)<span class="co">#set this last option to one.</span></code></pre></div>
 </div>
 </div>
   </div>

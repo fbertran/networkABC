@@ -5,8 +5,10 @@
 #ifndef SRC_NETWORK_RANDOM_R_H
 #define SRC_NETWORK_RANDOM_R_H
 
-#include "network_random_R.h"
+#include "network.h"
 
 Network* initNetwork(int number_of_nodes);
+
+void run(int *n, double *pclust_coef, int *array);
 
 #endif //SRC_NETWORK_RANDOM_R_H

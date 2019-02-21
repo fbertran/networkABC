@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -173,8 +173,67 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>M</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>30</span>),<span class='fl'>10</span>,<span class='fl'>3</span>)
-<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abcR</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt;       5% 
-#&gt; 4.887423 </div></pre>
+<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abcR</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt; First run of abc to find tolerance
+#&gt; ===============================
+#&gt; Iteration=1
+#&gt; Accepted:1000
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.361000 0.330000 0.309000 
+#&gt; Tolerance value
+#&gt;       5% 
+#&gt; 4.874755 
+#&gt; ===============================
+#&gt; Beginning main run of abc
+#&gt; ===============================
+#&gt; Iteration=1
+#&gt; Accepted:49
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.326531 0.367347 0.306122 
+#&gt; ===============================
+#&gt; Iteration=2
+#&gt; Accepted:93
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.376344 0.408602 0.215054 
+#&gt; ===============================
+#&gt; Iteration=3
+#&gt; Accepted:104
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.442308 0.403846 0.153846 
+#&gt; ===============================
+#&gt; Iteration=4
+#&gt; Accepted:141
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.567376 0.347518 0.085106 
+#&gt; ===============================
+#&gt; Iteration=5
+#&gt; Accepted:145
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.579310 0.337931 0.082759 
+#&gt; ===============================
+#&gt; Iteration=6
+#&gt; Accepted:171
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.643275 0.350877 0.005848 
+#&gt; ===============================
+#&gt; Iteration=7
+#&gt; Accepted:182
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.670330 0.324176 0.005495 
+#&gt; ===============================
+#&gt; Iteration=8
+#&gt; Accepted:179
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.709497 0.290503 0.000000 
+#&gt; ===============================
+#&gt; Iteration=9
+#&gt; Accepted:178
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.741573 0.258427 0.000000 
+#&gt; ===============================
+#&gt; Iteration=10
+#&gt; Accepted:203
+#&gt; Probabilities of clustering coefficients:
+#&gt; 0.798030 0.201970 0.000000 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

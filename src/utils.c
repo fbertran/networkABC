@@ -5,23 +5,38 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+//for unif_rand
+#include <Rmath.h>
 
 
-
-int sign(double x) {
+int mysign(double x) {
     return (x > 0) - (x < 0);
 	}
 
 
+/* // Checked and ok for replacement to use R random numbers generators
 int sample_int(int min, int max) {
-    return(min + rand()/(RAND_MAX/(max - min + 1)+1));
+    // Original code: return(min + rand()/(RAND_MAX/(max - min + 1)+1));
+    return min + (int) ((double)(max - min + 1) * rand() / (RAND_MAX + 1.0));
+}
+*/
+int sample_int(int min, int max) {
+    // Brian D Ripley, https://stat.ethz.ch/pipermail/r-help/2004-March/048153.html
+    return min + (int) ((double)(max - min + 1) * unif_rand());
 }
 
 
+
+/* // Checked and ok for replacement to use R random numbers generators
 double sample_double(int min, int max) {
 	return(min+rand()/(RAND_MAX/(max-min)));
 	}
+*/
+double sample_double(int min, int max) {
+    return(min+unif_rand()*(max - min));
+}
 
+/* // Checked and ok for replacement to use R random numbers generators
 void shuffle(int *array, size_t n) {
     if (n > 1) {
         size_t i;
@@ -33,7 +48,18 @@ void shuffle(int *array, size_t n) {
         }
     }
 }
-
+*/
+void shuffle(int *array, size_t n) {
+    if (n > 1) {
+        size_t i;
+        for (i = 0; i < n - 1; i++) {
+            size_t j = i + (int) ((double)(n - i) * unif_rand());
+            int t = array[j];
+            array[j] = array[i];
+            array[i] = t;
+        }
+    }
+}
 
 void swap(int *array, int a, int b) {
     int tmp=array[b];
@@ -70,7 +96,7 @@ int sample(int size, double *probs) {
     }
     //printf("\n");
 
-    double random_number=((double)rand()/RAND_MAX);
+    double random_number=unif_rand(); //unif_rand replaced ((double)rand()/RAND_MAX) to cope with CRAN requirements
     //printf("random number=%lf \n", random_number);
 
     int elm=0; //int elm; replaced due to note: initialize the variable 'elm' to silence this warning
@@ -111,8 +137,8 @@ void sample_multiple(int size, double *probs, int *elms, int *track_elms) {
                         break;
                         }
                 
-		random_number=((double)rand()/RAND_MAX) * max;
-                
+		random_number=unif_rand()*max; //unif_rand replaced ((double)rand()/RAND_MAX)*max to cope with CRAN requirements
+
 		for(j=1; j<=size; j++){
                         if(random_number<=cumul_probs[j] && random_number>cumul_probs[j-1]) {
                                         elm=j-1;
@@ -141,7 +167,8 @@ void sample_multiple(int size, double *probs, int *elms, int *track_elms) {
         }
 
 
-
+/* // Checked and ok for replacement to use R random numbers generators
+// from a method described by Abramowitz and Stegun
 void sampleFromGaussian(double mu, double sigma, double *Z) {
     static double U, V;
     static int phase = 0;
@@ -158,6 +185,10 @@ void sampleFromGaussian(double mu, double sigma, double *Z) {
     phase=1-phase;
     *Z=mu+sigma*(*Z);
 
+}
+*/
+void sampleFromGaussian(double mu, double sigma, double *Z) {
+    *Z=mu + sigma * norm_rand();
 }
 
 
@@ -235,11 +266,16 @@ int sort(int *input, int *nodes, int size) {
 
 }
 
-
+/* // Checked and ok for replacement to use R random numbers generators
 double generateRandomNumber(int min, int max) {
     double range = (max - min);
     double div = RAND_MAX / range;
     return(min+(rand()/div));
+}
+*/
+double generateRandomNumber(int min, int max) {
+    double range = (max - min);
+    return(min+unif_rand()*range);
 }
 
 

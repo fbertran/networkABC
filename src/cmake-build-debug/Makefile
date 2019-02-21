@@ -123,6 +123,33 @@ src/fast:
 	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/build
 .PHONY : src/fast
 
+R_init_networkABC.o: R_init_networkABC.c.o
+
+.PHONY : R_init_networkABC.o
+
+# target to build an object file
+R_init_networkABC.c.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/R_init_networkABC.c.o
+.PHONY : R_init_networkABC.c.o
+
+R_init_networkABC.i: R_init_networkABC.c.i
+
+.PHONY : R_init_networkABC.i
+
+# target to preprocess a source file
+R_init_networkABC.c.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/R_init_networkABC.c.i
+.PHONY : R_init_networkABC.c.i
+
+R_init_networkABC.s: R_init_networkABC.c.s
+
+.PHONY : R_init_networkABC.s
+
+# target to generate assembly for a file
+R_init_networkABC.c.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/R_init_networkABC.c.s
+.PHONY : R_init_networkABC.c.s
+
 abc_R.o: abc_R.c.o
 
 .PHONY : abc_R.o
@@ -294,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... src"
+	@echo "... R_init_networkABC.o"
+	@echo "... R_init_networkABC.i"
+	@echo "... R_init_networkABC.s"
 	@echo "... abc_R.o"
 	@echo "... abc_R.i"
 	@echo "... abc_R.s"

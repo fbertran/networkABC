@@ -4,9 +4,12 @@
  * */
 
 #include <stdlib.h>
+//for unif_rand
+#include <Rmath.h>
 #include "graph.h"
 #include "utils.h"
-#define rand_unit ((double)rand())/RAND_MAX
+// replaced by unif_rand to cope with CRAN requirements
+// #define rand_unit ((double)rand())/RAND_MAX
 #define min(x,y) (((x)<(y))? (x) : (y))
 #define max(x,y) (((x)<(y))? (y) : (x))
 #define PR 0.35 //probability of repression
@@ -30,7 +33,7 @@ Graph *generateSIM(int precise_number_nodes, int max_nodes) {
 
     for(i=0; i<number_of_nodes; ++i) {
         if(i==regulator_node) continue;
-        random_value=rand_unit;
+        random_value=unif_rand();
         is_repressed=(PR>=random_value)?1:0;
         addEdge(regulator_node, i, is_repressed, graph);
     }
@@ -107,7 +110,7 @@ Graph *generateDOR(int precise_number_nodes, int max_nodes) {
             operon=operons[index];
             orphans[operon]=0;
             swap(operons, index, number_of_operons-k-1);
-            random_value=rand_unit;
+            random_value=unif_rand();
             is_repressed=(PR>=random_value)?1:0;
             addEdge(regulator, operon, is_repressed, graph);
         }
@@ -121,7 +124,7 @@ Graph *generateDOR(int precise_number_nodes, int max_nodes) {
     for(i=0;i<number_of_nodes;++i) {
         if(orphans[i]==1) {
             index=sample_int(0, number_of_regulators-1);
-            random_value=rand_unit;
+            random_value=unif_rand();
             is_repressed=(PR>=random_value)?1:0;
             regulator=regulators[index];
             addEdge(regulator, i, is_repressed, graph);
@@ -172,7 +175,7 @@ Graph *generateFL(int precise_number_nodes, int max_nodes) {
     /**
      * Adds edges between the regulator and second node
      */
-    double random_value=rand_unit;
+    double random_value=unif_rand();
     is_repressed=(PR>=random_value)?1:0;
     addEdge(array[0], array[1], is_repressed, graph);
 
@@ -180,7 +183,7 @@ Graph *generateFL(int precise_number_nodes, int max_nodes) {
     /**
      * Adds edges between the regulator and the last node.
      */
-    random_value=rand_unit;
+    random_value=unif_rand();
     is_repressed=(PR>=random_value)?1:0;
     addEdge(array[0], array[number_of_nodes-1], is_repressed, graph);
 

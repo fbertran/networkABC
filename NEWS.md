@@ -1,3 +1,9 @@
+# networkABC 0.5-0
+
+* Added R_registerRoutines
+* Use R random numbers generation instead of rand and srand and the Rprintf
+* Use the Rprintf to direct C code outputs to the R console
+
 # networkABC 0.4-0
 
 * commented printf from abc_R.c, graph.c, network_random_R.C (CRAN requirement)

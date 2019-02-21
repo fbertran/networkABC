@@ -11,6 +11,10 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
+//for GetRNGstate and PutRNGstate
+#include <R.h>
+//for Rprintf
+#include <R_ext/Print.h>
 #include "graph.h"
 #include "pool.h"
 #include "network.h"
@@ -70,11 +74,10 @@ void resetNetwork(Network *self) {
 
 void writeAdjacencyMatrix(Graph *graph, char *output) {
         FILE* fo = fopen(output, "w");
-  /* Comment to cope with CRAN requirements
+  // Updated to Rprintf to cope with CRAN requirements
    if(fo == NULL) {
-                printf("Error in opening the file \n");
+                Rprintf("Error in opening the file \n");
                 }
-   */
 
         //fprintf(fo,"i j\n");
         int number_of_vertices=graph->number_of_vertices;
@@ -101,11 +104,11 @@ void writeGraph(Graph *graph, char *output) {
 
         FILE* fo = fopen(output, "w");
 
-  /* Comment to cope with CRAN requirements
-   if(fo == NULL) {
-		printf("Error in opening the file \n");
+  // Updated to Rprintf to cope with CRAN requirements
+  if(fo == NULL) {
+		Rprintf("Error in opening the file \n");
 		}
-   */
+   
 
 	
  	fprintf(fo,"i j\n");
@@ -230,7 +233,9 @@ void run(int *n, double *pclust_coef, int *array) {
 	int number_of_nodes=*n;
 	double clust_coef=*pclust_coef;
 
-	srand(time(NULL));
+	GetRNGstate();
+	// replaced by GetRNGstate() and R random generation functions to cope with CRAN requirements
+	// srand(time(NULL));
         Network *network=initNetwork(number_of_nodes);
         //printf("Number of nodes: %d\n", network->number_of_nodes);
         network->generate(network, network->number_of_nodes, 0, clust_coef);
@@ -248,6 +253,7 @@ void run(int *n, double *pclust_coef, int *array) {
         network->cleanup(network);
        	free(network);
 
+	PutRNGstate();
 	}
 
 

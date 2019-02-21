@@ -12,23 +12,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdaa545c-e9bf-4ab3-9232-1586411f8a29" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/R_init_networkABC.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/R_init_networkABC.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/abc_R.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DESCRIPTION" beforeDir="false" afterPath="$PROJECT_DIR$/../DESCRIPTION" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../NEWS.md" beforeDir="false" afterPath="$PROJECT_DIR$/../NEWS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../networkABC.Rproj" beforeDir="false" afterPath="$PROJECT_DIR$/../networkABC.Rproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/abc.R" beforeDir="false" afterPath="$PROJECT_DIR$/../R/abc.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-10-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-10-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-11-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-11-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-12-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-12-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-13-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-13-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-3-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-3-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-8-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/articles/vignette_files/figure-html/unnamed-chunk-8-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/authors.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/authors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/news/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/news/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/pkgdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/pkgdown.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/abc.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/abc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/figures/README-showHp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/figures/README-showHp-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/figures/README-showNetwork-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/figures/README-showNetwork-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/figures/README-showNp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/figures/README-showNp-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/netsimul.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/netsimul.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/networkABC.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/networkABC.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/network_gen.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/network_gen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/resabc.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/resabc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showHp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showHp-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showHp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showHp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showNetwork-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showNetwork-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showNetwork.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showNetwork.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showNp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showNp-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/reference/showNp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/reference/showNp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../man/figures/README-showHp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../man/figures/README-showHp-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../man/figures/README-showNetwork-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../man/figures/README-showNetwork-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../man/figures/README-showNp-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../man/figures/README-showNp-1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/abc_R.c" beforeDir="false" afterPath="$PROJECT_DIR$/abc_R.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/abc_R.o" beforeDir="false" afterPath="$PROJECT_DIR$/abc_R.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/abc_R.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/abc_R.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/graph.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/graph.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/motif.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/motif.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/network_random_R.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/network_random_R.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/pool.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/pool.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/utils.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/src.dir/utils.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/src.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/src.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.c" beforeDir="false" afterPath="$PROJECT_DIR$/graph.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.o" beforeDir="false" afterPath="$PROJECT_DIR$/graph.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/motif.c" beforeDir="false" afterPath="$PROJECT_DIR$/motif.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/motif.o" beforeDir="false" afterPath="$PROJECT_DIR$/motif.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network.h" beforeDir="false" afterPath="$PROJECT_DIR$/network.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/networkABC.so" beforeDir="false" afterPath="$PROJECT_DIR$/networkABC.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/network_random_R.c" beforeDir="false" afterPath="$PROJECT_DIR$/network_random_R.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network_random_R.h" beforeDir="false" afterPath="$PROJECT_DIR$/network_random_R.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/network_random_R.o" beforeDir="false" afterPath="$PROJECT_DIR$/network_random_R.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pool.c" beforeDir="false" afterPath="$PROJECT_DIR$/pool.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pool.o" beforeDir="false" afterPath="$PROJECT_DIR$/pool.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.o" beforeDir="false" afterPath="$PROJECT_DIR$/utils.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette.R" beforeDir="false" afterPath="$PROJECT_DIR$/../vignettes/vignette.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette.Rmd" beforeDir="false" afterPath="$PROJECT_DIR$/../vignettes/vignette.Rmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette.html" beforeDir="false" afterPath="$PROJECT_DIR$/../vignettes/vignette.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-2_5ec377e3aba4df0bf50ad419a767158c.RData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-2_5ec377e3aba4df0bf50ad419a767158c.rdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-2_5ec377e3aba4df0bf50ad419a767158c.rdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-5_22b351210f25eaf23f88698dd6d06597.RData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-5_22b351210f25eaf23f88698dd6d06597.rdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-5_22b351210f25eaf23f88698dd6d06597.rdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-9_8f43bb73e592fc6596ddb57b42836fa0.RData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-9_8f43bb73e592fc6596ddb57b42836fa0.rdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vignettes/vignette_cache/html/unnamed-chunk-9_8f43bb73e592fc6596ddb57b42836fa0.rdx" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,14 +115,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/graph.c">
+        <entry file="file://$PROJECT_DIR$/utils.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="430" column="13" selection-start-line="430" selection-start-column="13" selection-end-line="430" selection-end-column="13" />
+            <state relative-caret-position="293">
+              <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
               <folding>
-                <element signature="e#129#147#0" expanded="true" />
+                <element signature="e#92#111#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,10 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shuffle</find>
-      <find>gaussi</find>
-      <find>swap</find>
-      <find>generateRandomNumber</find>
       <find>sample</find>
       <find>time</find>
       <find>createPoolof3Motifs</find>
@@ -78,6 +150,18 @@
       <find>time(</find>
       <find>loop</find>
       <find>generateOmegaFromNetwork</find>
+      <find>unif_</find>
+      <find>rand_</find>
+      <find>unif</find>
+      <find>abc</find>
+      <find>run</find>
+      <find>srand</find>
+      <find>rand_unit</find>
+      <find>Rprint</find>
+      <find>rand</find>
+      <find>sign</find>
+      <find>RNG</find>
+      <find>rand(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,24 +170,33 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/pool.h" />
         <option value="$PROJECT_DIR$/utils.h" />
         <option value="$PROJECT_DIR$/graph.h" />
-        <option value="$PROJECT_DIR$/network_random_R.h" />
         <option value="$PROJECT_DIR$/motif.h" />
-        <option value="$PROJECT_DIR$/network_random_R.c" />
-        <option value="$PROJECT_DIR$/abc_R.c" />
-        <option value="$PROJECT_DIR$/motif.c" />
-        <option value="$PROJECT_DIR$/utils.c" />
         <option value="$PROJECT_DIR$/pool.c" />
         <option value="$PROJECT_DIR$/graph.c" />
+        <option value="$PROJECT_DIR$/R_init_networkABC.c" />
+        <option value="$PROJECT_DIR$/abc_R.h" />
+        <option value="$PROJECT_DIR$/network_random_R.h" />
+        <option value="$PROJECT_DIR$/motif.c" />
+        <option value="$PROJECT_DIR$/network_random_R.c" />
+        <option value="$PROJECT_DIR$/abc_R.c" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/utils.c" />
       </list>
     </option>
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="429" />
-    <option name="y" value="23" />
+    <option name="x" value="-51" />
+    <option name="y" value="55" />
     <option name="width" value="1400" />
     <option name="height" value="935" />
   </component>
@@ -130,6 +223,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="ObjectiveC" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -160,26 +254,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550488206292</updated>
-      <workItem from="1550488208533" duration="6675000" />
+      <workItem from="1550488208533" duration="6924000" />
+      <workItem from="1550660201169" duration="999000" />
+      <workItem from="1550685257609" duration="6568000" />
+      <workItem from="1550705892020" duration="4845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6675000" />
+    <option name="totallyTimeSpent" value="19336000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="429" y="23" width="1400" height="935" extended-state="0" />
-    <editor active="true" />
+    <frame x="-51" y="55" width="1400" height="935" extended-state="0" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496318" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26067746" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Messages" visible="true" weight="0.32977462" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="CMake" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -187,10 +277,16 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" visible="true" weight="0.32977462" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="CMake" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -222,13 +318,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include/opencl-c.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -240,13 +329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
@@ -267,57 +349,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network_random_R.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/network.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/network_random_R.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="137" column="104" lean-forward="true" selection-start-line="137" selection-start-column="19" selection-end-line="137" selection-end-column="104" />
-          <folding>
-            <element signature="e#377#396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abc_R.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="609" column="114" selection-start-line="609" selection-start-column="24" selection-end-line="609" selection-end-column="114" />
-          <folding>
-            <element signature="e#98#116#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/motif.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#142#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="92" column="109" lean-forward="true" selection-start-line="92" selection-start-column="31" selection-end-line="92" selection-end-column="109" />
-          <folding>
-            <element signature="e#92#111#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -333,13 +368,112 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graph.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="430" column="13" selection-start-line="430" selection-start-column="13" selection-end-line="430" selection-end-column="13" />
+        <state relative-caret-position="6330">
+          <caret line="422" column="1" lean-forward="true" selection-start-line="422" selection-start-column="1" selection-end-line="422" selection-end-column="1" />
           <folding>
             <element signature="e#129#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/network_random_R.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R_init_networkABC.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/motif.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="6" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network_random_R.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3555">
+          <caret line="237" column="25" selection-start-line="237" selection-start-column="7" selection-end-line="237" selection-end-column="25" />
+          <folding>
+            <element signature="e#377#396#0" expanded="true" />
+            <element signature="e#594#618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abc_R.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abc_R.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="916" lean-forward="true" selection-start-line="915" selection-end-line="916" />
+          <folding>
+            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#298#327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+          <folding>
+            <element signature="e#92#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

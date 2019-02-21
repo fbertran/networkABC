@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/fbertran/GitHub/networkABC/src/R_init_networkABC.c" "/Users/fbertran/GitHub/networkABC/src/cmake-build-debug/CMakeFiles/src.dir/R_init_networkABC.c.o"
   "/Users/fbertran/GitHub/networkABC/src/abc_R.c" "/Users/fbertran/GitHub/networkABC/src/cmake-build-debug/CMakeFiles/src.dir/abc_R.c.o"
   "/Users/fbertran/GitHub/networkABC/src/graph.c" "/Users/fbertran/GitHub/networkABC/src/cmake-build-debug/CMakeFiles/src.dir/graph.c.o"
   "/Users/fbertran/GitHub/networkABC/src/motif.c" "/Users/fbertran/GitHub/networkABC/src/cmake-build-debug/CMakeFiles/src.dir/motif.c.o"
@@ -16,6 +17,8 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../."
+  "/Library/Frameworks/R.framework/Versions/3.5/Resources/include"
+  "/Library/Frameworks/R.framework/Versions/3.5/PrivateHeaders"
   )
 
 # Targets to which this target links.

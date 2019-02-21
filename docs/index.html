@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -94,54 +94,113 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of networkABC from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"networkABC"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"networkABC"</span>)</code></pre></div>
 <p>You can install the development version of networkABC from <a href="https://github.com">github</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"fbertran/networkABC"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"fbertran/networkABC"</span>)</code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>The network_gen allows to simulate networks with given clustering coefficient.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(networkABC)</a>
-<a class="sourceLine" id="cb3-3" title="3">resnet &lt;-<span class="st"> </span><span class="kw"><a href="reference/network_gen.html">network_gen</a></span>(<span class="dv">10</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4">resnet</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; $number_genes</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] 10</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; $clust_coef</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; [1] 1</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; $network</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  [1,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  [2,]    0    0    1    0    0    0    0    0    0    -1</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  [3,]    0    0    0    0    0    0   -1    0    0     0</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  [4,]   -1    0    0    0   -1    0    0    0    0     1</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  [6,]    0    1    1    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;  [7,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    0    0     0</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt;  [9,]    0    0    0   -1    0    1    0    1    0     0</span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; [10,]    0    0    0    0    0    0    0    0    0     0</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(networkABC)
+resnet &lt;-<span class="st"> </span><span class="kw"><a href="reference/network_gen.html">network_gen</a></span>(<span class="dv">10</span>,<span class="dv">1</span>)
+resnet
+<span class="co">#&gt; $number_genes</span>
+<span class="co">#&gt; [1] 10</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $clust_coef</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $network</span>
+<span class="co">#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span>
+<span class="co">#&gt;  [1,]    0    0    0   -1    1    1    0    0   -1    -1</span>
+<span class="co">#&gt;  [2,]    0    0    0    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [3,]    0    0    0    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [4,]    0    0    0    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [6,]    0    0    0    0    0    0   -1    0    0     1</span>
+<span class="co">#&gt;  [7,]    0    0    0    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [8,]    1    0   -1    0    0    0    0    0    0     0</span>
+<span class="co">#&gt;  [9,]    0    0    0    1    0    0    0    0    0     0</span>
+<span class="co">#&gt; [10,]    0    1   -1    0    0    0    0    0    0     0</span></code></pre></div>
 <p>The abcR function performs the network reverse engineering with Approximate Bayesian Computation.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">M10&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb4-3" title="3">result&lt;-<span class="kw"><a href="reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M10)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;       5% </span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 4.239412</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)
+M10&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)
+result&lt;-<span class="kw"><a href="reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M10)
+<span class="co">#&gt; First run of abc to find tolerance</span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=1</span>
+<span class="co">#&gt; Accepted:1000</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.334000 0.345000 0.321000 </span>
+<span class="co">#&gt; Tolerance value</span>
+<span class="co">#&gt;       5% </span>
+<span class="co">#&gt; 4.224594 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Beginning main run of abc</span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=1</span>
+<span class="co">#&gt; Accepted:69</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.362319 0.333333 0.304348 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=2</span>
+<span class="co">#&gt; Accepted:98</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.377551 0.316327 0.306122 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=3</span>
+<span class="co">#&gt; Accepted:113</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.495575 0.274336 0.230088 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=4</span>
+<span class="co">#&gt; Accepted:168</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.613095 0.226190 0.160714 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=5</span>
+<span class="co">#&gt; Accepted:130</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.700000 0.215385 0.084615 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=6</span>
+<span class="co">#&gt; Accepted:174</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.712644 0.235632 0.051724 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=7</span>
+<span class="co">#&gt; Accepted:145</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.737931 0.234483 0.027586 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=8</span>
+<span class="co">#&gt; Accepted:134</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.798507 0.179104 0.022388 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=9</span>
+<span class="co">#&gt; Accepted:143</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.825175 0.167832 0.006993 </span>
+<span class="co">#&gt; ===============================</span>
+<span class="co">#&gt; Iteration=10</span>
+<span class="co">#&gt; Accepted:189</span>
+<span class="co">#&gt; Probabilities of clustering coefficients:</span>
+<span class="co">#&gt; 0.851852 0.142857 0.005291</span></code></pre></div>
 <p>The showHp function plots the hub probabilities.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/showHp.html">showHp</a></span>(result)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showHp.html">showHp</a></span>(result)</code></pre></div>
 <p><img src="reference/figures/README-showHp-1.png" width="100%"></p>
 <pre><code>#&gt;   gene.hubs hubs.proba
-#&gt; 1         3  0.1959596
-#&gt; 2         6  0.2424242
-#&gt; 3         8  0.2282828</code></pre>
+#&gt; 1         4  0.1640212
+#&gt; 2         6  0.2627866
+#&gt; 3         8  0.2310406</code></pre>
 <p>The showNp function plots the neighbourhood probabilities.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/showNp.html">showNp</a></span>(result)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showNp.html">showNp</a></span>(result)</code></pre></div>
 <p><img src="reference/figures/README-showNp-1.png" width="100%"></p>
 <p>The showNetwork function plots the final network.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="reference/showNetwork.html">showNetwork</a></span>(result,.<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showNetwork.html">showNetwork</a></span>(result,.<span class="dv">2</span>)</code></pre></div>
 <p><img src="reference/figures/README-showNetwork-1.png" width="100%"></p>
 </div>
 </div>

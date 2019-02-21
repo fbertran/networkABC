@@ -114,7 +114,7 @@ hist(result$dist)
 ```
 
 ## Using ABC algorithm with full options
-You can specify all the arguments of the ABC function ; we recommand to check the help manual.
+You can specify all the arguments of the ABC function: more details in the help manual.
 
 For example :
 ```{r, eval=FALSE}

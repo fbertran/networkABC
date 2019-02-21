@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/fbertran/GitHub/networkABC/src/. 
+C_INCLUDES = -I/Users/fbertran/GitHub/networkABC/src/. -I/Library/Frameworks/R.framework/Versions/3.5/Resources/include -I/Library/Frameworks/R.framework/Versions/3.5/PrivateHeaders 
 

@@ -44,6 +44,7 @@ if(prod(!is.na(neighbour_probs))!=1){neighbour_probs<-matrix(1,ngenes,ngenes)}
 iterations2<-iterations
 number_networks2<-number_networks
 if(is.na(tolerance)){
+                cat("First run of abc to find tolerance\n")
                 res222<-abcR(data,
                 clust_coeffs=clust_coeffs,
                 tolerance=sum(data^2),
@@ -54,8 +55,11 @@ if(is.na(tolerance)){
                 neighbour_probs=neighbour_probs,
                 is_probs=is_probs)
                 tolerance<-quantile(res222$dist,0.05)
+                cat("Tolerance value\n")
                 print(tolerance)
-  }
+                cat("===============================\n")
+                cat("Beginning main run of abc\n")
+}
 iterations<-iterations2
 number_networks<-number_networks2
 

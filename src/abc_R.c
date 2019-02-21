@@ -8,12 +8,17 @@ Copyright 2015 K.Musayeva <khmusayeva@gmail.com>.
 #include <math.h>
 #include <unistd.h>
 #include <time.h>
+#include <R_ext/Print.h>
 #include "graph.h"
 #include "pool.h"
-#include "network.h"
+//#include "network.h"
 #include "network_random_R.h"
 #include "utils.h"
 #define SQUARE(x) (x*x)
+//for GetRNGstate and PutRNGstate
+#include <R.h>
+//for unif_rand
+#include <Rmath.h>
 
 
 
@@ -52,12 +57,11 @@ void writeArray(double *dist, int size, char *output) {
 
         FILE* fo = fopen(output, "w");
 
-  /* Comment to cope with CRAN requirements
-   if(fo == NULL) {
-                printf("Error in opening the file \n");
+  // Updated to Rprintf to cope with CRAN requirements
+  if(fo == NULL) {
+                Rprintf("Error in opening the file \n");
                 }
-   */
-  
+
 	int i;
         for(i=0; i<size; ++i) {
                 fprintf(fo,"%lf\n", dist[i]);
@@ -77,11 +81,11 @@ void writeSimulatedData(double **data, int number_times, int number_genes, char 
 
         FILE* fo = fopen(output, "w");
 
-  /* Comment to cope with CRAN requirements
-   if(fo == NULL) {
-                printf("Error in opening the file \n");
+  // Updated to Rprintf to cope with CRAN requirements
+  if(fo == NULL) {
+                Rprintf("Error in opening the file \n");
                 }
-   */
+   
 
 
         int i,j;
@@ -105,11 +109,11 @@ void writeSimulatedData(double **data, int number_times, int number_genes, char 
 void writeOmega(int number_genes, double *omega, char *output) {
         FILE* fo = fopen(output, "w");
 
-  /* Comment to cope with CRAN requirements
-   if(fo == NULL) {
-                printf("Error in opening the file \n");
+  // Updated to Rprintf to cope with CRAN requirements
+  if(fo == NULL) {
+                Rprintf("Error in opening the file \n");
                 }
-   */
+  
 
 
 	int i,j;
@@ -171,9 +175,8 @@ int readOmega(char *input, double *omega, int number_genes) {
 
 	FILE* fi = fopen(input, "r");
 	if(fi == NULL) {
-	  /* Comment to cope with CRAN requirements
-	   printf("Cannot open the file: %s", input);
-	   */
+	  // Updated to Rprintf to cope with CRAN requirements
+	  Rprintf("Cannot open the file: %s\n", input);
 		return(1);
              }
 
@@ -263,11 +266,11 @@ void generateData(char *input, int number_genes, int number_times, double ***dat
 
 	//char buf[2000]; removed definition due to warning: unused variable 'buf' [-Wunused-variable]
         FILE* fi = fopen(input, "r");
-        /* Comment to cope with CRAN requirements
-         if(fi == NULL) {
-                printf("Cannot open the file: %s\n", input);
+  // Updated to Rprintf to cope with CRAN requirements
+  if(fi == NULL) {
+                Rprintf("Cannot open the file: %s\n", input);
              }
-         */
+      
 
 
 	*data=(double **)malloc(number_genes*sizeof(double));
@@ -389,7 +392,9 @@ void label_hubs(int *labels, double *probs, double *cumul_probs, int number_gene
         max=cumul_probs[number_genes];
 	int temp, index=0;
         for(i=1; i<=number_hubs; ++i){
-                random_number=((double)rand()/RAND_MAX) * max;
+				random_number=unif_rand() * max;
+				// Replaced by R random generator; required by CRAN
+                // random_number=((double)rand()/RAND_MAX) * max;
                 for(j=1; j<=number_genes; j++){
                         if(random_number<=cumul_probs[j] && random_number>cumul_probs[j-1]) {
                                         elm=j-1;
@@ -570,10 +575,13 @@ void label_non_hubs(Graph *graph, double *neighbour_probs, int *labels, int *nod
 /**
  * The ABC algorithm
  */
-void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust_size, double *clust_coeffs, double *ptolerance, int *pnumber_hubs, int *pnumber_outer_iter, int *pnumber_inner_iter, int *number_accepted, double *dist_array, double *hub_probs, double *rneighbour_probs, int *is_probs) {
+void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust_size, double *clust_coeffs,
+		 double *ptolerance, int *pnumber_hubs, int *pnumber_outer_iter, int *pnumber_inner_iter, int *number_accepted,
+		 double *dist_array, double *hub_probs, double *rneighbour_probs, int *is_probs) {
 
-	srand(time(NULL));
-	
+	//srand(time(NULL));
+	GetRNGstate();
+
 	double tolerance=*ptolerance;
 	//printf("Tolerance: %lf\n", tolerance);
 	int number_hubs=*pnumber_hubs;
@@ -587,93 +595,92 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 	//printf("number_genes=%d, number_times=%d, tolerance=%lf, number_of_hubs=%d, number_outer_iteration=%d, number_inner_iteration=%d, is_probs=%d, clust_size=%d\n", number_genes, number_times, tolerance, number_hubs, number_outer_iter, number_inner_iter, *is_probs, *pclust_size);
 
 	double **data;
-	
+
 	read_data(data_array, number_genes, number_times, &data);
 
-	int *hubs=calloc(number_genes, sizeof(int)); //for computing the frequency of each node of being in the role of a hub	
+	int *hubs=calloc(number_genes, sizeof(int)); //for computing the frequency of each node of being in the role of a hub
 	int *nodes=malloc(number_genes*sizeof(int)); //for sorting the nodes of a network according to their connectivity
 	int *degrees=malloc(number_genes*sizeof(int)); //for sorting the degrees of the nodes of a network
 	int *labels=malloc(number_genes*sizeof(int)); //labels computed according to the probabilities of each node being a hub
 
 	double *probs=calloc(number_genes, sizeof(double)); //probability of hubs
-        double *cumul_probs=calloc((number_genes+1),sizeof(double)); //cumulative probability of hubs
+	double *cumul_probs=calloc((number_genes+1),sizeof(double)); //cumulative probability of hubs
 	int *track_labels=malloc(number_genes*sizeof(int));//an auxillary array
 
-       	double *omega = (double*) calloc(number_genes * number_genes, sizeof(double)); //the matrix Omega
+	double *omega = (double*) calloc(number_genes * number_genes, sizeof(double)); //the matrix Omega
 	double **simulated_data = (double**) malloc (number_genes * sizeof(double*)); //holds the simulated data
 	int *neighbour_freqs=(int*)calloc(number_genes*number_genes, sizeof(int));
 	double *neighbour_probs=(double*)calloc(number_genes*number_genes, sizeof(double));
 
-       	int *array1 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
-       	int *array2 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
-		
+	int *array1 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
+	int *array2 = (int*) calloc(number_genes * number_genes, sizeof(int)); //for the restructuring of the network
+
 	int i, j, l, p, q;	//, t, m=0; removed definition due to warning: unused variable 't', 'm' [-Wunused-variable]
 
-	int c=number_hubs*(number_hubs-1)/2; 
+	int c=number_hubs*(number_hubs-1)/2;
 	int *place_holder=malloc(c*sizeof(int));
 	int number_perms=factorial(number_hubs);
-	double *config_probs=malloc(number_perms*sizeof(double));	
+	double *config_probs=malloc(number_perms*sizeof(double));
 	int **configs=malloc(number_perms*sizeof(int*));
 
 	double *prob_clust_coeffs=calloc(*pclust_size, sizeof(double));
-        int *freq_clust_coeffs=calloc(*pclust_size, sizeof(int));
+	int *freq_clust_coeffs=calloc(*pclust_size, sizeof(int));
 
 
 	for(i=0; i<number_perms; ++i) {
 		configs[i]=malloc(number_hubs*sizeof(int));
-		}
+	}
 
 
 	for(i=0;i<number_genes;++i) {
 		labels[i]=i;
-		}
+	}
 
 	initSimulatedData(data, &simulated_data, number_genes, number_times);
-        Network *network=initNetwork(number_genes);    	
+	Network *network=initNetwork(number_genes);
 
 	int hits=0;
 	int dist_track=0;
 
 	//check if user has specified the probabilities for hubs and neighbours, if yes use them
-	
+
 	if(*is_probs) {
 		//printf("Probabilities are set...\n");
 		for(p=0; p<number_genes; ++p) {
 			probs[p]=hub_probs[p];
 			for(q=0; q<number_genes; ++q) {
 				//printf("%lf ", rneighbour_probs[q+p*number_genes]);
-				neighbour_probs[q+p*number_genes]=rneighbour_probs[q+p*number_genes];			
-				}
-				//printf("\n");
+				neighbour_probs[q+p*number_genes]=rneighbour_probs[q+p*number_genes];
 			}
+			//printf("\n");
 		}
+	}
 
-		/*
-		for(p=0; p<number_genes; ++p) {
-			printf("%lf ", probs[p]);
-			}
-		printf("\n====================================\n");
-		for(p=0; p<number_genes; ++p) {
-			for(q=0; q<number_genes; ++q) {
-				printf("%lf ", neighbour_probs[q+p*number_genes]);
-				}
-			printf("\n");
-			}
-		*/
+	/*
+    for(p=0; p<number_genes; ++p) {
+        printf("%lf ", probs[p]);
+        }
+    printf("\n====================================\n");
+    for(p=0; p<number_genes; ++p) {
+        for(q=0; q<number_genes; ++q) {
+            printf("%lf ", neighbour_probs[q+p*number_genes]);
+            }
+        printf("\n");
+        }
+    */
 
 
 	for(j=0; j<number_outer_iter; ++j) {
 		hits=0;
-	  /* Comment to cope with CRAN requirements
-		printf("===============================\n");
-		printf("Iteration=%d\n", j+1);
-	 */
+	  // Updated to Rprintf to cope with CRAN requirements
+	    Rprintf("===============================\n");
+      Rprintf("Iteration=%d\n", j+1);
 		//printf("Tolerance=%lf\n", tolerance);
 
 		for(i=0; i<number_inner_iter; ++i) {
 
 			int clust_index=sample(*pclust_size, prob_clust_coeffs);
-                        double clust_coef=clust_coeffs[clust_index];
+			double clust_coef=clust_coeffs[clust_index];
 			network->generate(network, number_genes, 0, clust_coef);
 			computeDegree(network->G);
 			computeClusteringCoefficient(network->G);
@@ -682,11 +689,11 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 			for(q=0;q<number_genes;q++) {
 				nodes[q]=network->G->vertices[q]->index;
 				degrees[nodes[q]]=network->G->vertices[q]->degree;
-				}
+			}
 
 			//sorts the nodes of the network in the descending order according to their degrees
 			sort(degrees, nodes, number_genes);
-	
+
 			//starts labeling
 			if(j>0 || *is_probs) {
 
@@ -701,7 +708,7 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 				*/
 
 				label_hubs(labels, probs, cumul_probs, number_genes, number_hubs);//get the labeling for the network
-				
+
 				/*
 				printf("After labeling the hubs:\n");
 				for(p=0; p<number_genes; ++p) {
@@ -709,23 +716,23 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 					}
 				printf("\n");
 				*/
-				
+
 				//labelAllNodes(labels, track_labels, probs, cumul_probs, number_genes);//get the labeling for the network
 				double result=1.0;
-				
-				//If there are 3 hubs (labeled as 0, 1 and 2), to indicate whether they are neighbours in the generated network uses 01, 02, and 12 coding.  
+
+				//If there are 3 hubs (labeled as 0, 1 and 2), to indicate whether they are neighbours in the generated network uses 01, 02, and 12 coding.
 				//01 considers the nodes 0 and 1, if they are neighbours the corresponding entry will be 1, otherwise it will be 0.
 				int k=0;
 				for(p=0; p<number_hubs; ++p) {
 					for(q=p+1; q<number_hubs; ++q) {
-						place_holder[k++]=network->G->edges[nodes[p]][nodes[q]];	
-							}
-						}
+						place_holder[k++]=network->G->edges[nodes[p]][nodes[q]];
+					}
+				}
 
 
 				/*
 				for(l=0; l<3; ++l) {
-					printf("%d ", place_holder[l]);								
+					printf("%d ", place_holder[l]);
 						}
 					printf("\n");
 				*/
@@ -750,19 +757,19 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 						for(q=p+1; q<number_hubs; ++q) {
 							if(place_holder[k]!=0){
 								result*=neighbour_probs[configs[l][p]*number_genes+configs[l][q]];
-								}
+							}
 							else {
 								result*=1-neighbour_probs[configs[l][p]*number_genes+configs[l][q]];
-								}
-							//printf("%lf \n", result);
-							++k;	
 							}
+							//printf("%lf \n", result);
+							++k;
 						}
-					config_probs[l]=result;						
 					}
+					config_probs[l]=result;
+				}
 
 
-				/*	
+				/*
 				for(l=0; l<number_perms; ++l){
 					printf("%lf ", config_probs[l]);
 					}
@@ -774,7 +781,7 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 				label_non_hubs(network->G, neighbour_probs, labels, nodes, number_hubs, 0);
 				restructureGraph(network->G, nodes, labels, array1, array2);
 
-				}
+			}
 
 			generateOmegaFromNetwork(network->G, omega, number_genes, -1, 1);
 
@@ -782,44 +789,42 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 			simulateDataOneStepBack(data, simulated_data, number_genes, number_times, omega);
 
 			//print the distance between the observed and simulated data
-			double dist=computeAR(data, simulated_data, number_genes, number_times);	
+			double dist=computeAR(data, simulated_data, number_genes, number_times);
 
 			if(j==number_outer_iter-1) {
 				dist_array[dist_track++]=dist;
-				}	
-			
-			if(dist<tolerance) { 
+			}
+
+			if(dist<tolerance) {
 				//printf("distance:%lf\n", dist);
 				//printf("=====================\n");
 				//printGraph(network->G);
 				//printf("=====================\n");
 				for(q=0;q<number_hubs;q++) {
 					hubs[network->G->vertices[nodes[q]]->index]+=1;
-					}
+				}
 				compute_neighbour_freq(network->G, neighbour_freqs, number_genes);
 				freq_clust_coeffs[clust_index]+=1;
 				++hits;
-				}
+			}
 
 			network->resetNetwork(network);
 			resetOmega(omega, array1, array2, number_genes);
-			//resetSimulatedData(simulated_data, number_genes, number_times); 
-			}
+			//resetSimulatedData(simulated_data, number_genes, number_times);
+		}
 
-		//printf("Tolerance:%lf\n", tolerance);	
-		/* Comment to cope with CRAN requirements
-		 printf("Accepted:%d\n", hits);	
-		*/
+		//printf("Tolerance:%lf\n", tolerance);
+		// Updated to Rprintf to cope with CRAN requirements
+		  Rprintf("Accepted:%d\n", hits);
 		if(hits<10) {
-		  /* Comment to cope with CRAN requirements
-			printf("\nAccepted number of nodes is too small or zero.\n");	
-		  */
+		  // Updated to Rprintf to cope with CRAN requirements
+  		  Rprintf("\nAccepted number of nodes is too small or zero.\n");
 			break;
-			}
+		}
 
 		/*
 		for(q=0; q<number_genes; ++q) {
-			printf("%d\n", hubs[q]);	
+			printf("%d\n", hubs[q]);
 			}
 		*/
 
@@ -827,23 +832,23 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 
 		/*
 		for(q=0; q<number_genes; ++q) {
-			printf("%lf\n", probs[q]);	
+			printf("%lf\n", probs[q]);
 			}
 		*/
 
 
 		compute_neighbour_probs(neighbour_probs, neighbour_freqs, number_genes, hits);
 		compute_clust_probs(prob_clust_coeffs, freq_clust_coeffs, *pclust_size);
-		
-		/* Comment to cope with CRAN requirements
-		 printf("Probabilities of clustering coefficients:\n");
-		
+
+		// Updated to Rprintf to cope with CRAN requirements
+		Rprintf("Probabilities of clustering coefficients:\n");
+
 		for(p=0; p<*pclust_size; ++p) {
-                        printf("%lf ", prob_clust_coeffs[p]);
+                        Rprintf("%lf ", prob_clust_coeffs[p]);
                         }
-                printf("\n");
-		 */
+                Rprintf("\n");
 		
+
 		/*
    		for(p=0; p<number_genes; ++p) {
        			for(q=0; q<number_genes; ++q) {
@@ -853,7 +858,7 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 			}
 		*/
 		//tolerance-=5;
-		}
+	}
 
 	for(p=0; p<number_genes; ++p) {
 		hub_probs[p]=probs[p];
@@ -861,31 +866,31 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 		for(q=0;q<number_genes;++q) {
 			rneighbour_probs[q+p*number_genes]=neighbour_probs[q+p*number_genes];
 			//printf("%lf ", neighbour_probs[q+p*number_genes]);
-			}
-		//printf("\n");
 		}
-
 		//printf("\n");
+	}
+
+	//printf("\n");
 
 	*number_accepted=hits;
 
 	/*******************************************
- 	*frees up the memory 
+ 	*frees up the memory
 	********************************************/
 
-        for(i=0; i<number_genes; ++i) {
+	for(i=0; i<number_genes; ++i) {
 		free(data[i]);
-            }
-        free(data);
+	}
+	free(data);
 
-        for(i=0; i<number_genes; ++i) {
+	for(i=0; i<number_genes; ++i) {
 		free(simulated_data[i]);
-            }
+	}
 	free(simulated_data);
 
-        for(i=0; i<number_perms; ++i) {
+	for(i=0; i<number_perms; ++i) {
 		free(configs[i]);
-            }
+	}
 	free(configs);
 
 	free(omega);
@@ -896,19 +901,20 @@ void abc(double *data_array, int *pnumber_genes, int *pnumber_times, int *pclust
 	free(cumul_probs);
 	free(degrees);
 	network->cleanup(network);
-	free(network);	
-	free(track_labels);	
-	free(array1);	
-	free(array2);	
-	free(neighbour_freqs);	
-	free(neighbour_probs);	
+	free(network);
+	free(track_labels);
+	free(array1);
+	free(array2);
+	free(neighbour_freqs);
+	free(neighbour_probs);
 	free(place_holder);
-	free(config_probs);	
+	free(config_probs);
 	free(prob_clust_coeffs);
-        free(freq_clust_coeffs);
+	free(freq_clust_coeffs);
 
 	/**************************/
+	PutRNGstate();
 
-	}
+}
 
 

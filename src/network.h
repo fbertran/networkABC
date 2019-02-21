@@ -3,6 +3,8 @@
  *Copyright (c) 2015 K.Musayeva <khmusayeva@gmail.com>
  */
 
+#include "graph.h"
+#include "pool.h"
 
 typedef struct Network_str {
         int *V;

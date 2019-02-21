@@ -45,6 +45,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/fbertran/GitHub/networkABC/src/."/>
+					<Add directory="/Library/Frameworks/R.framework/Versions/3.5/Resources/include"/>
+					<Add directory="/Library/Frameworks/R.framework/Versions/3.5/PrivateHeaders"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -67,6 +69,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/fbertran/GitHub/networkABC/src/."/>
+					<Add directory="/Library/Frameworks/R.framework/Versions/3.5/Resources/include"/>
+					<Add directory="/Library/Frameworks/R.framework/Versions/3.5/PrivateHeaders"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -82,7 +86,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/fbertran/GitHub/networkABC/src/R_init_networkABC.c">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/Users/fbertran/GitHub/networkABC/src/abc_R.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/Users/fbertran/GitHub/networkABC/src/abc_R.h">
 			<Option target="src"/>
 		</Unit>
 		<Unit filename="/Users/fbertran/GitHub/networkABC/src/graph.c">

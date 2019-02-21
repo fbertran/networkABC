@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/src.dir/motif.c.o"
   "CMakeFiles/src.dir/network_random_R.c.o"
   "CMakeFiles/src.dir/pool.c.o"
+  "CMakeFiles/src.dir/R_init_networkABC.c.o"
   "CMakeFiles/src.dir/utils.c.o"
   "src.pdb"
   "src"
