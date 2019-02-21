@@ -3,7 +3,8 @@
 // Copyright (c) Universite de Strasbourg and CNRS
 //
 
-typedef long unsigned int size_t;
+// for macos
+// typedef long unsigned int size_t;
 
 #ifndef SRC_UTILS_H
 #define SRC_UTILS_H
