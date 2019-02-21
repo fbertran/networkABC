@@ -1,3 +1,8 @@
+# networkABC 0.5-1
+
+* Updated code to add R_forceSymbols(dll, TRUE)
+* Vignette typos and English improvements
+
 # networkABC 0.5-0
 
 * Added R_registerRoutines

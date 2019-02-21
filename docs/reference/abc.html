@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>abcR</span>(<span class='no'>data</span>, <span class='kw'>clust_coeffs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.33</span>, <span class='fl'>0.66</span>, <span class='fl'>1</span>), <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+    <pre class="usage"><span class='fu'>abc</span>(<span class='no'>data</span>, <span class='kw'>clust_coeffs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.33</span>, <span class='fl'>0.66</span>, <span class='fl'>1</span>), <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>number_hubs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>number_networks</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>hub_probs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>neighbour_probs</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>is_probs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
@@ -173,7 +173,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>M</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>30</span>),<span class='fl'>10</span>,<span class='fl'>3</span>)
-<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abcR</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt; First run of abc to find tolerance
+<span class='no'>result</span><span class='kw'>&lt;-</span><span class='fu'>abc</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>M</span>)</div><div class='output co'>#&gt; First run of abc to find tolerance
 #&gt; ===============================
 #&gt; Iteration=1
 #&gt; Accepted:1000

@@ -230,7 +230,7 @@ void cleanup(Network *self) {
  * To method is to be called from R.
  * n is the number of nodes or genes, array is to store the generated network.
  */
-void run(int *n, double *pclust_coef, int *array) {
+void C_run(int *n, double *pclust_coef, int *array) {
 
 	int number_of_nodes=*n;
 	double clust_coef=*pclust_coef;

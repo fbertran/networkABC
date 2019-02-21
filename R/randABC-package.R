@@ -14,5 +14,5 @@
 #' @importFrom network as.network
 #' @importFrom sna degree
 #' @importFrom RColorBrewer brewer.pal
-#' @useDynLib networkABC
+#' @useDynLib networkABC, .registration = TRUE, .fixes = "C_"
 NULL

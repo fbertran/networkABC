@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -167,7 +167,7 @@ clco&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/
 <a href="#the-simpliest-way" class="anchor"></a>The simpliest way</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)
 M&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)
-result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M)
+result&lt;-<span class="kw"><a href="../reference/abc.html">abc</a></span>(<span class="dt">data=</span>M)
 <span class="co">#&gt; First run of abc to find tolerance</span>
 <span class="co">#&gt; ===============================</span>
 <span class="co">#&gt; Iteration=1</span>
@@ -240,7 +240,8 @@ result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/showNp.html">showNp</a></span>(result)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-11-1.png" width="768"> Specifying a probability cutoff (the minimal probability for which we can say that two genes are linked), we can plot the network :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/showNetwork.html">showNetwork</a></span>(result,<span class="fl">0.3</span>)</code></pre></div>
-<p><img src="vignette_files/figure-html/unnamed-chunk-12-1.png" width="768"> In this plot, the diameter of a node is linked to its number of childreen whereas the color is linked to the probability for each gene of being a hub.</p>
+<p><img src="vignette_files/figure-html/unnamed-chunk-12-1.png" width="768"></p>
+<p>In this plot, the diameter of a node increases with the number of its children whereas the color is a function of the probability for each gene of being a hub.</p>
 <p>You can also have a look on the error :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(result<span class="op">$</span>dist)</code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-13-1.png" width="768"></p>
@@ -250,7 +251,7 @@ result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<spa
 <a href="#using-abc-algorithm-with-full-options" class="anchor"></a>Using ABC algorithm with full options</h2>
 <p>You can specify all the arguments of the ABC function: more details in the help manual.</p>
 <p>For example :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result&lt;-<span class="kw"><a href="../reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result&lt;-<span class="kw"><a href="../reference/abc.html">abc</a></span>(<span class="dt">data=</span>M,
             <span class="dt">clust_coeffs=</span><span class="fl">0.33</span>, <span class="co">#you can specify more than one clustering coefficient</span>
             <span class="dt">tolerance=</span><span class="fl">3.5</span>, <span class="co">#maximal distance between simulated and real data</span>
             <span class="co"># to accept the network</span>

@@ -6,12 +6,14 @@
 #' @examples
 #' network_gen(10,1)
 #' @export
-#' @useDynLib networkABC run
+#' @useDynLib networkABC C_run
 
 
 
 network_gen<-function(number_genes,clust_coef){
-  result=.C("run",number_genes= as.integer(number_genes), clust_coef=as.numeric(clust_coef), network=as.integer(1:(number_genes*number_genes)),PACKAGE="networkABC")
+  result=.C(C_run,number_genes= as.integer(number_genes), clust_coef=as.numeric(clust_coef), network=as.integer(1:(number_genes*number_genes)))
+      #No longer needed since the symbol is registered in the NAMESPACE
+      #,PACKAGE="networkABC")
   
   result$network<-matrix(result$network,result$number_genes,result$number_genes,byrow=TRUE)
 return(result)

@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>The network_gen allows to simulate networks with given clustering coefficient.</p>
+<p>The <code>network_gen</code> allows to simulate networks with given clustering coefficient.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(networkABC)
 resnet &lt;-<span class="st"> </span><span class="kw"><a href="reference/network_gen.html">network_gen</a></span>(<span class="dv">10</span>,<span class="dv">1</span>)
@@ -124,10 +124,10 @@ resnet
 <span class="co">#&gt;  [8,]    1    0   -1    0    0    0    0    0    0     0</span>
 <span class="co">#&gt;  [9,]    0    0    0    1    0    0    0    0    0     0</span>
 <span class="co">#&gt; [10,]    0    1   -1    0    0    0    0    0    0     0</span></code></pre></div>
-<p>The abcR function performs the network reverse engineering with Approximate Bayesian Computation.</p>
+<p>The <code>abc</code> function performs the network reverse engineering with Approximate Bayesian Computation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">314</span>)
 M10&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">30</span>),<span class="dv">10</span>,<span class="dv">3</span>)
-result&lt;-<span class="kw"><a href="reference/abc.html">abcR</a></span>(<span class="dt">data=</span>M10)
+result&lt;-<span class="kw"><a href="reference/abc.html">abc</a></span>(<span class="dt">data=</span>M10)
 <span class="co">#&gt; First run of abc to find tolerance</span>
 <span class="co">#&gt; ===============================</span>
 <span class="co">#&gt; Iteration=1</span>
@@ -189,17 +189,17 @@ result&lt;-<span class="kw"><a href="reference/abc.html">abcR</a></span>(<span c
 <span class="co">#&gt; Accepted:189</span>
 <span class="co">#&gt; Probabilities of clustering coefficients:</span>
 <span class="co">#&gt; 0.851852 0.142857 0.005291</span></code></pre></div>
-<p>The showHp function plots the hub probabilities.</p>
+<p>The <code>showHp</code> function plots the hub probabilities.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showHp.html">showHp</a></span>(result)</code></pre></div>
 <p><img src="reference/figures/README-showHp-1.png" width="100%"></p>
 <pre><code>#&gt;   gene.hubs hubs.proba
 #&gt; 1         4  0.1640212
 #&gt; 2         6  0.2627866
 #&gt; 3         8  0.2310406</code></pre>
-<p>The showNp function plots the neighbourhood probabilities.</p>
+<p>The <code>showNp</code> function plots the neighbourhood probabilities.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showNp.html">showNp</a></span>(result)</code></pre></div>
 <p><img src="reference/figures/README-showNp-1.png" width="100%"></p>
-<p>The showNetwork function plots the final network.</p>
+<p>The <code>showNetwork</code> function plots the final network.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/showNetwork.html">showNetwork</a></span>(result,.<span class="dv">2</span>)</code></pre></div>
 <p><img src="reference/figures/README-showNetwork-1.png" width="100%"></p>
 </div>

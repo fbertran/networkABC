@@ -14,16 +14,16 @@
 #' 
 #' @examples
 #' M<-matrix(rnorm(30),10,3)
-#' result<-abcR(data=M)
+#' result<-abc(data=M)
 NULL
 #> NULL
 
 #' @rdname abc
 #'
 #' @export
-#' @useDynLib networkABC abc
+#' @useDynLib networkABC C_abc
 
-abcR<-function(data,
+abc<-function(data,
               clust_coeffs=c(0.33,0.66,1),
               tolerance=NA,
               number_hubs=NA,
@@ -45,7 +45,7 @@ iterations2<-iterations
 number_networks2<-number_networks
 if(is.na(tolerance)){
                 cat("First run of abc to find tolerance\n")
-                res222<-abcR(data,
+                res222<-networkABC::abc(data,
                 clust_coeffs=clust_coeffs,
                 tolerance=sum(data^2),
                 number_hubs=number_hubs,
@@ -71,7 +71,7 @@ if(length(neighbour_probs)!=(ngenes^2)){stop("neighbour_probs should be a square
 
 neighbour_probs<-c(neighbour_probs)
 
-result=.C("abc", as.double(data), 
+result=.C(C_abc, as.double(data), 
           as.integer(ngenes), 
           as.integer(ntimes), 
           as.integer(clust_size), 
@@ -84,8 +84,9 @@ result=.C("abc", as.double(data),
           dist=as.double(1:number_networks), 
           hp=as.double(hub_probs), 
           np=as.double(neighbour_probs), 
-          as.integer(is_probs),
-          PACKAGE="networkABC")
+          as.integer(is_probs))
+#No longer needed since the symbol is registered in the NAMESPACE
+#          ,PACKAGE="networkABC")
 
 result$np<-matrix(result$np,ngenes,ngenes,byrow=TRUE)
 return(result)

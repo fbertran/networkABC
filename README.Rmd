@@ -40,7 +40,7 @@ devtools::install_github("fbertran/networkABC")
 
 ## Examples
 
-The network_gen allows to simulate networks with given clustering coefficient.
+The `network_gen` allows to simulate networks with given clustering coefficient.
 ```{r networkgen}
 set.seed(314)
 library(networkABC)
@@ -48,24 +48,24 @@ resnet <- network_gen(10,1)
 resnet
 ```
 
-The abcR function performs the network reverse engineering with Approximate Bayesian Computation.
-```{r abcR}
+The `abc` function performs the network reverse engineering with Approximate Bayesian Computation.
+```{r abc}
 set.seed(314)
 M10<-matrix(rnorm(30),10,3)
-result<-abcR(data=M10)
+result<-abc(data=M10)
 ```
 
-The showHp function plots the hub probabilities.
+The `showHp` function plots the hub probabilities.
 ```{r showHp}
 showHp(result)
 ```
 
-The showNp function plots the neighbourhood probabilities.
+The `showNp` function plots the neighbourhood probabilities.
 ```{r showNp}
 showNp(result)
 ```
 
-The showNetwork function plots the final network.
+The `showNetwork` function plots the final network.
 ```{r showNetwork}
 showNetwork(result,.2)
 ```

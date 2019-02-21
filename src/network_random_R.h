@@ -10,6 +10,6 @@
 
 Network* initNetwork(int number_of_nodes);
 
-void run(int *n, double *pclust_coef, int *array);
+void C_run(int *n, double *pclust_coef, int *array);
 
 #endif //SRC_NETWORK_RANDOM_R_H

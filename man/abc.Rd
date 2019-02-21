@@ -2,10 +2,9 @@
 % Please edit documentation in R/abc.R
 \name{abc}
 \alias{abc}
-\alias{abcR}
 \title{ABC algorithm for network reverse-engineering}
 \usage{
-abcR(data, clust_coeffs = c(0.33, 0.66, 1), tolerance = NA,
+abc(data, clust_coeffs = c(0.33, 0.66, 1), tolerance = NA,
   number_hubs = NA, iterations = 10, number_networks = 1000,
   hub_probs = NA, neighbour_probs = NA, is_probs = 1)
 }
@@ -33,5 +32,5 @@ ABC algorithm for network reverse-engineering
 }
 \examples{
 M<-matrix(rnorm(30),10,3)
-result<-abcR(data=M)
+result<-abc(data=M)
 }
