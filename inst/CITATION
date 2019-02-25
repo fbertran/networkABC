@@ -1,0 +1,19 @@
+citHeader("To cite the networkABC package in publications use:")
+
+titl <- meta$Title
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry="Manual",
+         title = titl,
+         author = personList(as.person("F. Bertrand"), 
+                             as.person("M. Maumy-Bertrand")), 
+	 publisher = "manual",
+         year         = year,
+         note         = vers,
+         url          = "http://www-irma.u-strasbg.fr/~fbertran/",
+         textVersion = 
+         paste("Frederic Bertrand and Myriam Maumy-Bertrand (",year ,"). ", 
+               titl, ", ", vers, ".", sep=""
+               )
+)

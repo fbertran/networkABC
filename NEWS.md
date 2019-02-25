@@ -1,3 +1,7 @@
+# networkABC 0.5-2
+
+* Added citation for package
+
 # networkABC 0.5-1
 
 * Updated code to add R_forceSymbols(dll, TRUE)
