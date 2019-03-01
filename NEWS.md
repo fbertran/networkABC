@@ -1,3 +1,8 @@
+# networkABC 0.5-3
+
+* Detailed description of the package
+* Added copyright holders
+
 # networkABC 0.5-2
 
 * Added citation for package
