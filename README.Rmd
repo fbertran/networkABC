@@ -5,6 +5,7 @@ output: github_document
 ---
 
 [![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
+[![DOI](https://zenodo.org/badge/169994404.svg)](https://zenodo.org/badge/latestdoi/169994404)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
