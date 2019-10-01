@@ -4,7 +4,7 @@ author: "Frédéric Bertrand and Myriam Maumy-Bertrand"
 output: github_document
 ---
 
-[![CRAN status](https://www.r-pkg.org/badges/version/randABC)](https://cran.r-project.org/package=networkABC)
+[![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
