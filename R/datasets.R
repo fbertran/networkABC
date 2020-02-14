@@ -1,14 +1,14 @@
 #' Simulated network
 #'
 #' Result of the use of the \code{network_gen} function.
-#'
+#' @docType data
 #' @format A list of three objects :
 #' \describe{
 #'   \item{number_genes}{The number of genes in the network}
 #'   \item{clust_coef}{The clustering coefficient}
 #'   \item{network}{The simulated network}
 #'   }
-#'
+#' @name netsimul
 #' @rdname netsimul
 "netsimul"
 #> [1] "netsimul"
@@ -16,6 +16,7 @@
 #' Result of an ABC inference
 #'
 #' Result for the reverse engineering of a simulated Cascade network
+#' @docType data
 #' @format A list of 14 objects :
 #' \describe{
 #' \item{data}{: The microarray data used, rows are genes and columns are time points.)}
@@ -31,6 +32,7 @@
 #' \item{neighbour_probs}{: matrix of neighbour probabilities of size number_nodes*number_nodes}
 #' \item{is_probs}{: is equal to 1 since hub_probs and neighbour_probs were specified}
 #' }
+#' @name resabc
 #' @rdname resabc
 "resabc"
 #> [1] "resabc"

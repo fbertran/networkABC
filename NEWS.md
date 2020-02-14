@@ -1,3 +1,7 @@
+# networkABC 0.6-0
+
+* Code update due to CRAN requirements.
+
 # networkABC 0.5-3
 
 * Detailed description of the package

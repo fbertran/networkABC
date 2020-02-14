@@ -3,7 +3,6 @@
 \docType{package}
 \name{networkABC}
 \alias{networkABC}
-\alias{networkABC-package}
 \title{networkABC}
 \description{
 An inference tool based on approximate Bayesian computations to decipher 

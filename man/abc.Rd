@@ -4,9 +4,17 @@
 \alias{abc}
 \title{ABC algorithm for network reverse-engineering}
 \usage{
-abc(data, clust_coeffs = c(0.33, 0.66, 1), tolerance = NA,
-  number_hubs = NA, iterations = 10, number_networks = 1000,
-  hub_probs = NA, neighbour_probs = NA, is_probs = 1)
+abc(
+  data,
+  clust_coeffs = c(0.33, 0.66, 1),
+  tolerance = NA,
+  number_hubs = NA,
+  iterations = 10,
+  number_networks = 1000,
+  hub_probs = NA,
+  neighbour_probs = NA,
+  is_probs = 1
+)
 }
 \arguments{
 \item{data}{: Any microarray data in the form of a matrix (rows are genes and columns are time points)}
