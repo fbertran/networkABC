@@ -14,7 +14,7 @@ add_executable(src
         pool.c
         R_init_networkABC.c
         pool.h
-        utils.c utils.h network_random_R.h motif.h abc_R.h)
+        utils.c utils.h network_random_R.h motif.h abc_R.h localCC.f90)
 
 include_directories(.)
 

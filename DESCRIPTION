@@ -1,11 +1,11 @@
 Package: networkABC
 Type: Package
 Title: Network Reverse Engineering with Approximate Bayesian Computation
-Version: 0.6-0
+Version: 0.7-0
 Date: 2020-01-31
 Depends: R (>= 3.0.0)
 Imports: RColorBrewer, network, sna
-Suggests: PCIT, ggplot2, knitr
+Suggests: ggplot2, knitr
 Authors@R: c(
 	person(given = "Frederic", family= "Bertrand", role = c("cre", "aut"), email = "frederic.bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-0837-8281")),
 	person(given = "Myriam", family= "Maumy-Bertrand", role = c("aut"), email = "myriam.maumy-bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-4615-1512")),

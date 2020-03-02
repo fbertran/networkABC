@@ -47,7 +47,6 @@ plot(network(net$network))
 
 Here is a simulation to show that the algorithm produces networks with a clustering coefficient close to the targeted one
 ```{r}
-require(PCIT)
 f<-function(a){
   a<-a[!is.nan(a)]
 }
@@ -59,7 +58,7 @@ clco<-rep(0,500)
 for(i in 1:500){
   N<-network_gen(500,.33)$net
   N<-N+t(N)
-  clco[i]<-mean(f(abs(PCIT::clusteringCoefficient(N))))
+  clco[i]<-mean(f(abs(networkABC::clusteringCoefficient(N))))
 }
 ```
 Here is the result :

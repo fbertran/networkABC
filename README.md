@@ -1,15 +1,18 @@
----
-title: "Network Reverse Engineering with Approximate Bayesian Computation"
-author: "Frédéric Bertrand and Myriam Maumy-Bertrand"
-output: github_document
----
-
-[![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# networkABC
+
+# Network Reverse Engineering with Approximate Bayesian Computation
+
+
+### *Frédéric Bertrand and Myriam Maumy-Bertrand*
+
+[![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
+[![DOI](https://zenodo.org/badge/169994404.svg)](https://zenodo.org/badge/latestdoi/169994404)
+
+----------------
+
+## networkABC: an inference tool based on approximate Bayesian computation to decipher network data
 
 The goal of `networkABC` is to provide an inference tool based on approximate Bayesian computation to decipher network data and assess the strength of their inferred links.
 

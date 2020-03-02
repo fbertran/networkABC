@@ -1,3 +1,7 @@
+# networkABC 0.7-0
+
+* Function added to code due to PCIT package been archived on CRAN.
+
 # networkABC 0.6-0
 
 * Code update due to CRAN requirements.
