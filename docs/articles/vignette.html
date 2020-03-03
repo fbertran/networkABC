@@ -85,7 +85,7 @@
       <h1>Using the networkABC package</h1>
                         <h4 class="author">Frédéric Bertrand, Nicolas Jung, Myriam Maumy-Bertrand</h4>
             
-            <h4 class="date">2020-03-02</h4>
+            <h4 class="date">2020-03-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/fbertran/networkABC/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
@@ -118,17 +118,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">net&lt;-<span class="kw"><a href="../reference/network_gen.html">network_gen</a></span>(<span class="dv">100</span>,<span class="fl">0.33</span>)</a></code></pre></div>
 <p>Then, we can plot the network :</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(network)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; Le chargement a nécessité le package : network</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; network: Classes for Relational Data</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; Version 1.15 created on 2019-04-01.</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; copyright (c) 2005, Carter T. Butts, University of California-Irvine</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;                     Mark S. Handcock, University of California -- Los Angeles</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;                     David R. Hunter, Penn State University</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;                     Martina Morris, University of Washington</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;                     Skye Bender-deMoll, University of Washington</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;  For citation information, type citation("network").</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;  Type help("network-package") to get started.</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/network/man/network.html">network</a></span>(net<span class="op">$</span>network))</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/network/man/network.html">network</a></span>(net<span class="op">$</span>network))</a></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
 <p>Here is a simulation to show that the algorithm produces networks with a clustering coefficient close to the targeted one</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">f&lt;-<span class="cf">function</span>(a){</a>
