@@ -185,7 +185,8 @@ int readOmega(char *input, double *omega, int number_genes) {
 
         for(row=0;row<number_genes;row++) {
            for(col=0;col<number_genes;col++) {
-             if (fscanf(fi, "%lf", &entry));
+             if (fscanf(fi, "%lf", &entry))
+               ;
                 omega[col+number_genes*row]=entry;
                    }
                 }
@@ -284,7 +285,8 @@ void generateData(char *input, int number_genes, int number_times, double ***dat
 
         double entry;
 	for(i=0; i<number_genes; i++) {
-                if(fscanf(fi, "%lf", &entry));
+                if(fscanf(fi, "%lf", &entry))
+                  ;
 		(*data)[i][0]=entry;
                 //microarray[i]=entry;
                 //printf("%lf\n", (*data)[i][0]);

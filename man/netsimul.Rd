@@ -4,12 +4,14 @@
 \name{netsimul}
 \alias{netsimul}
 \title{Simulated network}
-\format{A list of three objects :
+\format{
+A list of three objects :
 \describe{
   \item{number_genes}{The number of genes in the network}
   \item{clust_coef}{The clustering coefficient}
   \item{network}{The simulated network}
-  }}
+  }
+}
 \usage{
 netsimul
 }

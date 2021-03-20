@@ -1,7 +1,14 @@
+genlogo.R
+.gitignore
+^codecov\.yml$
+^revdep$
+^_pkgdown\.yml$
+^figure$
+^pkgdown$
+^Meta$
 #All packages
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.gitignore$
 ^NEWS$    
 #For the pkgdown website
 ^docs*$
@@ -13,11 +20,22 @@
 #If README too big, not on CRAN but only on git
 ^man/figures*$
 ^README\.Rmd$
-^README\.md$
+#^README\.md$
 #Specific
 ^fullrespdf*$
 ^inst/animation*$
 ^articles*$
+
+#Source code extras
 ^src/CMakeLists.txt*$
 ^src/cmake-build-debug*$
 ^src/.idea*$
+
+#Vignette cache
+^cran-comments[.].*$
+^vignettes/.*[.](pdf|PDF)$
+^vignettes/.*[.](r|R)$
+^vignettes/[.]install_extras$
+^vignettes/.*_cache$
+^vignettes/.*_files$
+^\.github$

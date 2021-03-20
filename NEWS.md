@@ -1,3 +1,8 @@
+# networkABC 0.8-0
+
+* Add badges, logo and update pkgdown site
+* Add github actions
+
 # networkABC 0.7-0
 
 * Function added to code due to PCIT package been archived on CRAN.

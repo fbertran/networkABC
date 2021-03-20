@@ -1,8 +1,8 @@
 Package: networkABC
 Type: Package
 Title: Network Reverse Engineering with Approximate Bayesian Computation
-Version: 0.7-0
-Date: 2020-03-03
+Version: 0.8-0
+Date: 2021-03-20
 Depends: R (>= 3.0.0)
 Imports: RColorBrewer, network, sna
 Suggests: ggplot2, knitr
@@ -22,6 +22,6 @@ Encoding: UTF-8
 Classification/MSC: 62E17, 62F15, 62J07, 62P10, 92C42
 LazyData: true
 VignetteBuilder: knitr
-URL: http://www-irma.u-strasbg.fr/~fbertran/, https://github.com/fbertran/networkABC
-BugReports: https://github.com/fbertran/networkABC/issues
-RoxygenNote: 7.0.0
+URL: https://fbertran.github.io/networkABC/, https://github.com/fbertran/networkABC/
+BugReports: https://github.com/fbertran/networkABC/issues/
+RoxygenNote: 7.1.1

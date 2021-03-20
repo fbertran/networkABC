@@ -4,7 +4,8 @@
 \name{resabc}
 \alias{resabc}
 \title{Result of an ABC inference}
-\format{A list of 14 objects :
+\format{
+A list of 14 objects :
 \describe{
 \item{data}{: The microarray data used, rows are genes and columns are time points.)}
 \item{ngenes}{: The number of genes.)}
@@ -18,7 +19,8 @@
 \item{hub_probs}{: one-dimensional array of size number_genes for the each label to be in the role of a hub}
 \item{neighbour_probs}{: matrix of neighbour probabilities of size number_nodes*number_nodes}
 \item{is_probs}{: is equal to 1 since hub_probs and neighbour_probs were specified}
-}}
+}
+}
 \usage{
 resabc
 }
