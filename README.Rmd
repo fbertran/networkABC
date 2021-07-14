@@ -48,7 +48,11 @@ Up to now, Approximate Bayesian Computation (ABC) algorithms have been scarcely 
 It can be used, for instance, for elucidating gene regulatory network, which is an important step towards understanding the normal cell physiology and complex pathological phenotype. Reverse-engineering consists in using gene expressions over time or over different experimental conditions to discover the structure of the gene network in a targeted cellular process. The fact that gene expression data are usually noisy, highly correlated, and have high dimensionality explains the need for specific statistical methods to reverse engineer the underlying network. 
 
 
+The package was accepted for presentation at the the useR! 2021 international conference. A technical note for the package was created and published on the website of the conference. It can be accessed  here: [https://user2021.r-project.org/participation/technical_notes/t164/technote/](https://user2021.r-project.org/participation/technical_notes/t164/technote/). 
+
+
 This website and these examples were created by F. Bertrand and M. Maumy-Bertrand.
+
 
 ## Installation
 

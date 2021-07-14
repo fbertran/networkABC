@@ -17,3 +17,14 @@ citEntry(entry="Manual",
                titl, ", ", vers, ".", sep=""
                )
 )
+
+citEntry(entry="article",
+         title = "Network Reverse Engineering with Approximate Bayesian Computation",
+         author = personList(as.person("M. Maumy"), as.person("F. Bertrand")),
+	       journal = "user! 2021",
+         year         = 2021,
+         note         = "Zurich",
+         url          = "https://user2021.r-project.org/participation/technical_notes/t164/technote/",
+         textVersion = 
+         paste("Myriam Maumy, Frederic Bertrand (2021). Partial Least Squares Regression for Beta Regression Models. useR! 2021, Zurich. https://user2021.r-project.org/participation/technical_notes/t164/technote/.")
+)
