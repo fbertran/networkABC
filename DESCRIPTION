@@ -5,7 +5,7 @@ Version: 0.8-0
 Date: 2021-03-20
 Depends: R (>= 3.0.0)
 Imports: RColorBrewer, network, sna
-Suggests: ggplot2, knitr, rmarkdown
+Suggests: ggplot2, knitr, markdown, rmarkdown
 Authors@R: c(
 	person(given = "Frederic", family= "Bertrand", role = c("cre", "aut"), email = "frederic.bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-0837-8281")),
 	person(given = "Myriam", family= "Maumy-Bertrand", role = c("aut"), email = "myriam.maumy-bertrand@math.unistra.fr", comment = c(ORCID = "0000-0002-4615-1512")),
