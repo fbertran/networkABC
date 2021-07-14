@@ -9,7 +9,7 @@
 #' @param number_networks : number of generated networks in each iteration of the ABC algorithm
 #' @param hub_probs : one-dimensional array of size number_genes for the each label to be in the role of a hub
 #' @param neighbour_probs : this is the matrix of neighbour probabilities of size number_nodes*number_nodes
-#' @param is_probs : this needs to be set either to one (if you specify hub_probs and neighbour_probs) or to zero (if neither probabilities are specified). Attention: you should specify both hub_probs and neighbour_probs if is_probs is one. If is_prob is zero these arrays should simply indicate an array of a specified size..
+#' @param is_probs : this needs to be set either to one (if you specify hub_probs and neighbour_probs) or to zero (if neither probabilities are specified). Warning: you should specify both hub_probs and neighbour_probs if is_probs is one. If is_prob is zero these arrays should simply indicate an array of a specified size..
 #' 
 #' 
 #' @examples
