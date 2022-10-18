@@ -11,7 +11,7 @@ citEntry(entry="Manual",
 	 publisher = "manual",
          year         = year,
          note         = vers,
-         url          = "http://www-irma.u-strasbg.fr/~fbertran/",
+         url          = "https://fbertran.github.io/homepage/",
          textVersion = 
          paste("Frederic Bertrand and Myriam Maumy-Bertrand (",year ,"). ", 
                titl, ", ", vers, ".", sep=""

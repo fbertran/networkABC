@@ -1,5 +1,5 @@
 //
-// 2019-02-19. Author F. Bertrand <fbertran@math.unistra.fr>
+// 2019-02-19. Author F. Bertrand <frederic.bertrand@utt.fr>
 // Copyright (c) Universite de Strasbourg and CNRS
 //
 

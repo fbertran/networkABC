@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">networkABC</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8-0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8-1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/fbertran/networkABC/">
+  <a href="https://github.com/fbertran/networkABC/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -86,203 +82,245 @@
 
       
 
-      </header><script src="vignette_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using the networkABC package</h1>
-                        <h4 class="author">Frédéric Bertrand, Nicolas Jung, Myriam Maumy-Bertrand</h4>
+                        <h4 data-toc-skip class="author">Frédéric
+Bertrand, Nicolas Jung, Myriam Maumy-Bertrand</h4>
             
-            <h4 class="date">2021-03-20</h4>
+            <h4 data-toc-skip class="date">2022-10-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/fbertran/networkABC/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/fbertran/networkABC/blob/HEAD/vignettes/vignette.Rmd" class="external-link"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
 
     </div>
 
     
     
-<div id="abstract" class="section level1">
-<h1 class="hasAnchor">
-<a href="#abstract" class="anchor"></a>Abstract</h1>
-<p>Elucidating gene regulatory network is an important step towards under- standing the normal cell physiology and complex pathological phenotype. Reverse- engineering consists in using gene expression over time or over different experimental conditions to discover the structure of the gene network in a targeted cellular process. The fact that gene expression data are usually noisy, highly correlated, and have high dimensionality explains the need for specific statistical methods to reverse engineer the underlying network. Among known methods, Approximate Bayesian Computation (ABC) algorithms have not been very well studied. Due to the computational overhead their application is also limited to a small number of genes. In this work we have developed a new multi-level ABC approach that has less computational cost. At the first level, the method captures the global properties of the network, such as scale-freeness and cluster- ing coefficients, whereas the second level is targeted to capture local properties, including the probability of each couple of genes being linked.</p>
+<div class="section level2">
+<h2 id="abstract">Abstract<a class="anchor" aria-label="anchor" href="#abstract"></a>
+</h2>
+<p>Elucidating gene regulatory network is an important step towards
+under- standing the normal cell physiology and complex pathological
+phenotype. Reverse- engineering consists in using gene expression over
+time or over different experimental conditions to discover the structure
+of the gene network in a targeted cellular process. The fact that gene
+expression data are usually noisy, highly correlated, and have high
+dimensionality explains the need for specific statistical methods to
+reverse engineer the underlying network. Among known methods,
+Approximate Bayesian Computation (ABC) algorithms have not been very
+well studied. Due to the computational overhead their application is
+also limited to a small number of genes. In this work we have developed
+a new multi-level ABC approach that has less computational cost. At the
+first level, the method captures the global properties of the network,
+such as scale-freeness and cluster- ing coefficients, whereas the second
+level is targeted to capture local properties, including the probability
+of each couple of genes being linked.</p>
 </div>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <div class="figure">
 <img src="grapheABC.png" width="800" alt=""><p class="caption">Steps of the network ABC package.</p>
 </div>
 </div>
-<div id="generation-of-a-network-topology" class="section level1">
-<h1 class="hasAnchor">
-<a href="#generation-of-a-network-topology" class="anchor"></a>Generation of a network topology</h1>
+<div class="section level2">
+<h2 id="generation-of-a-network-topology">Generation of a network topology<a class="anchor" aria-label="anchor" href="#generation-of-a-network-topology"></a>
+</h2>
 <p>Load the <code>networkABC</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fbertran.github.io/networkABC/">networkABC</a></span><span class="op">)</span></code></pre></div>
-<div id="examples-and-checks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples-and-checks" class="anchor"></a>Examples and checks</h2>
-<p>To generate a network, the number of node and the targeted clustering coefficient should be specified. For example, the following produces a network with 100 nodes and a targeted clustering coefficient of 0.33 :</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fbertran.github.io/networkABC/" class="external-link">networkABC</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="examples-and-checks">Examples and checks<a class="anchor" aria-label="anchor" href="#examples-and-checks"></a>
+</h3>
+<p>To generate a network, the number of node and the targeted clustering
+coefficient should be specified. For example, the following produces a
+network with 100 nodes and a targeted clustering coefficient of 0.33
+:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">net</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/network_gen.html">network_gen</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0.33</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">net</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/network_gen.html">network_gen</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0.33</span><span class="op">)</span></span></code></pre></div>
 <p>Then, we can plot the network :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://statnet.org/">network</a></span><span class="op">)</span>
-<span class="co">#&gt; Le chargement a nécessité le package : network</span>
-<span class="co">#&gt; network: Classes for Relational Data</span>
-<span class="co">#&gt; Version 1.16.1 created on 2020-10-06.</span>
-<span class="co">#&gt; copyright (c) 2005, Carter T. Butts, University of California-Irvine</span>
-<span class="co">#&gt;                     Mark S. Handcock, University of California -- Los Angeles</span>
-<span class="co">#&gt;                     David R. Hunter, Penn State University</span>
-<span class="co">#&gt;                     Martina Morris, University of Washington</span>
-<span class="co">#&gt;                     Skye Bender-deMoll, University of Washington</span>
-<span class="co">#&gt;  For citation information, type citation("network").</span>
-<span class="co">#&gt;  Type help("network-package") to get started.</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/network/man/network.html">network</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://statnet.org/" class="external-link">network</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/network/man/network.html" class="external-link">network</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
-<p>Here is a simulation to show that the algorithm produces networks with a clustering coefficient close to the targeted one</p>
+<p>Here is a simulation to show that the algorithm produces networks
+with a clustering coefficient close to the targeted one</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">a</span><span class="op">&lt;-</span><span class="va">a</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.nan</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">]</span>
-<span class="op">}</span></code></pre></div>
-<p>We generate 500 networks with 500 nodes with a targeted clustering coefficient of 0.33</p>
+<code class="sourceCode R"><span><span class="va">f</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">a</span><span class="op">&lt;-</span><span class="va">a</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.nan</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>We generate 500 networks with 500 nodes with a targeted clustering
+coefficient of 0.33</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span>
-<span class="va">clco</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">500</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">N</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/network_gen.html">network_gen</a></span><span class="op">(</span><span class="fl">500</span>,<span class="fl">.33</span><span class="op">)</span><span class="op">$</span><span class="va">net</span>
-  <span class="va">N</span><span class="op">&lt;-</span><span class="va">N</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
-  <span class="va">clco</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu">networkABC</span><span class="fu">::</span><span class="fu"><a href="../reference/clusteringCoefficient.html">clusteringCoefficient</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="va">clco</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">500</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">N</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/network_gen.html">network_gen</a></span><span class="op">(</span><span class="fl">500</span>,<span class="fl">.33</span><span class="op">)</span><span class="op">$</span><span class="va">net</span></span>
+<span>  <span class="va">N</span><span class="op">&lt;-</span><span class="va">N</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span></span>
+<span>  <span class="va">clco</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu">networkABC</span><span class="fu">::</span><span class="fu"><a href="../reference/clusteringCoefficient.html">clusteringCoefficient</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Here is the result :</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3306789</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.3306789</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.02874285</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.02874285</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="va">clco</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
-<p>Notice that the algorithm cannot reach all desired values of clustering coefficients, because the network has to be scalefree.</p>
-<p>For example, a clustering coefficient of 1 implies that every couple of nodes are linked together ; such a network is obviously not scale-free.</p>
+<p>Notice that the algorithm cannot reach all desired values of
+clustering coefficients, because the network has to be scalefree.</p>
+<p>For example, a clustering coefficient of 1 implies that every couple
+of nodes are linked together ; such a network is obviously not
+scale-free.</p>
 </div>
-<div id="details-about-the-algorithm" class="section level2">
-<h2 class="hasAnchor">
-<a href="#details-about-the-algorithm" class="anchor"></a>Details about the algorithm</h2>
-<p>This algorithm is partially based on the algorithm by Di Camillo, Barbara, Gianna Toffolo, and Claudio Cobelli. ”A gene network simulator to assess reverse engineering algorithms.” <em>Annals of the New York Academy of Sciences</em>.</p>
-<p>Let us call <span class="math inline">\(V\)</span> the set of nodes to be connected in the graph <span class="math inline">\(G\)</span> at the current iteration <span class="math inline">\(t\)</span> and <span class="math inline">\(H\)</span> the set of nodes to be connected at iteration <span class="math inline">\(t + 1\)</span>. <span class="math inline">\(V\)</span> is initialized as <span class="math inline">\(V = {1, ...,N}\)</span>, that is, with all the <span class="math inline">\(N\)</span> nodes in <span class="math inline">\(G\)</span>, whereas <span class="math inline">\(H\)</span> is initialized as the empty set <span class="math inline">\(H\)</span>. Nodes are then linked to each other through an iterative procedure, which consists of three main steps, explained in detail below. 1. Three candidate modules are generated. The structure is sampled from a pool of motifs, with possibility of random changes. The number of node of the module is set at random. In this algorithm we have : feedback motif, feedforward motifs and loops. 1. A score is assigned to each module, and one of the three modules is sampled with probability proportional to this score; let us denote the sampled module by M and the number of its nodes by <span class="math inline">\(m\)</span>. 1. <span class="math inline">\(m\)</span> nodes are sampled from <span class="math inline">\(V\)</span> and linked to each other in the graph <span class="math inline">\(G\)</span>, according to the selected module structure <span class="math inline">\(M\)</span>; <span class="math inline">\(V\)</span> is updated by deleting the m sampled nodes; <span class="math inline">\(H\)</span> is updated by adding the nodes. At the end of this process, <span class="math inline">\(V\)</span> is empty whereas <span class="math inline">\(H\)</span> is composed of a lot of motifs. To link the motifs together, we have to choose one node in each motif that is the first position. This set of nodes is then considered as set <span class="math inline">\(V\)</span> .</p>
+<div class="section level3">
+<h3 id="details-about-the-algorithm">Details about the algorithm<a class="anchor" aria-label="anchor" href="#details-about-the-algorithm"></a>
+</h3>
+<p>This algorithm is partially based on the algorithm by Di Camillo,
+Barbara, Gianna Toffolo, and Claudio Cobelli. ”A gene network simulator
+to assess reverse engineering algorithms.” <em>Annals of the New York
+Academy of Sciences</em>.</p>
+<p>Let us call <span class="math inline">\(V\)</span> the set of nodes
+to be connected in the graph <span class="math inline">\(G\)</span> at
+the current iteration <span class="math inline">\(t\)</span> and <span class="math inline">\(H\)</span> the set of nodes to be connected at
+iteration <span class="math inline">\(t + 1\)</span>. <span class="math inline">\(V\)</span> is initialized as <span class="math inline">\(V = {1, ...,N}\)</span>, that is, with all the
+<span class="math inline">\(N\)</span> nodes in <span class="math inline">\(G\)</span>, whereas <span class="math inline">\(H\)</span> is initialized as the empty set <span class="math inline">\(H\)</span>. Nodes are then linked to each other
+through an iterative procedure, which consists of three main steps,
+explained in detail below. 1. Three candidate modules are generated. The
+structure is sampled from a pool of motifs, with possibility of random
+changes. The number of node of the module is set at random. In this
+algorithm we have : feedback motif, feedforward motifs and loops. 2. A
+score is assigned to each module, and one of the three modules is
+sampled with probability proportional to this score; let us denote the
+sampled module by M and the number of its nodes by <span class="math inline">\(m\)</span>. 3. <span class="math inline">\(m\)</span> nodes are sampled from <span class="math inline">\(V\)</span> and linked to each other in the graph
+<span class="math inline">\(G\)</span>, according to the selected module
+structure <span class="math inline">\(M\)</span>; <span class="math inline">\(V\)</span> is updated by deleting the m sampled
+nodes; <span class="math inline">\(H\)</span> is updated by adding the
+nodes. At the end of this process, <span class="math inline">\(V\)</span> is empty whereas <span class="math inline">\(H\)</span> is composed of a lot of motifs. To link
+the motifs together, we have to choose one node in each motif that is
+the first position. This set of nodes is then considered as set <span class="math inline">\(V\)</span> .</p>
 </div>
 </div>
-<div id="running-the-abc-algorithm" class="section level1">
-<h1 class="hasAnchor">
-<a href="#running-the-abc-algorithm" class="anchor"></a>Running the ABC algorithm</h1>
-<div id="the-simpliest-way" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-simpliest-way" class="anchor"></a>The simpliest way</h2>
+<div class="section level2">
+<h2 id="running-the-abc-algorithm">Running the ABC algorithm<a class="anchor" aria-label="anchor" href="#running-the-abc-algorithm"></a>
+</h2>
+<div class="section level3">
+<h3 id="the-simpliest-way">The simpliest way<a class="anchor" aria-label="anchor" href="#the-simpliest-way"></a>
+</h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">M</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,<span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>
-<span class="va">result</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/abc.html">abc</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">M</span><span class="op">)</span>
-<span class="co">#&gt; First run of abc to find tolerance</span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=1</span>
-<span class="co">#&gt; Accepted:1000</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.325000 0.349000 0.326000 </span>
-<span class="co">#&gt; Tolerance value</span>
-<span class="co">#&gt;       5% </span>
-<span class="co">#&gt; 4.523488 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Beginning main run of abc</span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=1</span>
-<span class="co">#&gt; Accepted:45</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.488889 0.311111 0.200000 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=2</span>
-<span class="co">#&gt; Accepted:109</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.522936 0.266055 0.211009 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=3</span>
-<span class="co">#&gt; Accepted:139</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.654676 0.201439 0.143885 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=4</span>
-<span class="co">#&gt; Accepted:163</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.705521 0.196319 0.098160 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=5</span>
-<span class="co">#&gt; Accepted:154</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.753247 0.181818 0.064935 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=6</span>
-<span class="co">#&gt; Accepted:210</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.819048 0.142857 0.038095 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=7</span>
-<span class="co">#&gt; Accepted:200</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.860000 0.120000 0.020000 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=8</span>
-<span class="co">#&gt; Accepted:163</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.865031 0.110429 0.024540 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=9</span>
-<span class="co">#&gt; Accepted:232</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.909483 0.077586 0.012931 </span>
-<span class="co">#&gt; ===============================</span>
-<span class="co">#&gt; Iteration=10</span>
-<span class="co">#&gt; Accepted:238</span>
-<span class="co">#&gt; Probabilities of clustering coefficients:</span>
-<span class="co">#&gt; 0.907563 0.079832 0.012605</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">M</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,<span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">result</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/abc.html">abc</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; First run of abc to find tolerance</span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=1</span></span>
+<span><span class="co">#&gt; Accepted:1000</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.325000 0.349000 0.326000 </span></span>
+<span><span class="co">#&gt; Tolerance value</span></span>
+<span><span class="co">#&gt;       5% </span></span>
+<span><span class="co">#&gt; 4.523488 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Beginning main run of abc</span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=1</span></span>
+<span><span class="co">#&gt; Accepted:45</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.488889 0.311111 0.200000 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=2</span></span>
+<span><span class="co">#&gt; Accepted:109</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.522936 0.266055 0.211009 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=3</span></span>
+<span><span class="co">#&gt; Accepted:139</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.654676 0.201439 0.143885 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=4</span></span>
+<span><span class="co">#&gt; Accepted:163</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.705521 0.196319 0.098160 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=5</span></span>
+<span><span class="co">#&gt; Accepted:154</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.753247 0.181818 0.064935 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=6</span></span>
+<span><span class="co">#&gt; Accepted:210</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.819048 0.142857 0.038095 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=7</span></span>
+<span><span class="co">#&gt; Accepted:200</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.860000 0.120000 0.020000 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=8</span></span>
+<span><span class="co">#&gt; Accepted:163</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.865031 0.110429 0.024540 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=9</span></span>
+<span><span class="co">#&gt; Accepted:232</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.909483 0.077586 0.012931 </span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span><span class="co">#&gt; Iteration=10</span></span>
+<span><span class="co">#&gt; Accepted:238</span></span>
+<span><span class="co">#&gt; Probabilities of clustering coefficients:</span></span>
+<span><span class="co">#&gt; 0.907563 0.079832 0.012605</span></span></code></pre></div>
 <p>We can plot the results in three different ways :</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">networkABC</span><span class="fu">::</span><span class="fu"><a href="../reference/showHp.html">showHp</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">networkABC</span><span class="fu">::</span><span class="fu"><a href="../reference/showHp.html">showHp</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-10-1.png" width="768"></p>
-<pre><code>#&gt;   gene.hubs hubs.proba
-#&gt; 1         4  0.2282913
-#&gt; 2         5  0.2394958
-#&gt; 3        10  0.2521008</code></pre>
-<p>This plot show the probabilities for each gene of being a hub. The following shows the probability for each couple of genes of being linked :</p>
+<pre><code><span><span class="co">#&gt;   gene.hubs hubs.proba</span></span>
+<span><span class="co">#&gt; 1         4  0.2282913</span></span>
+<span><span class="co">#&gt; 2         5  0.2394958</span></span>
+<span><span class="co">#&gt; 3        10  0.2521008</span></span></code></pre>
+<p>This plot show the probabilities for each gene of being a hub. The
+following shows the probability for each couple of genes of being linked
+:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/showNp.html">showNp</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
-<p><img src="vignette_files/figure-html/unnamed-chunk-11-1.png" width="768"> Specifying a probability cutoff (the minimal probability for which we can say that two genes are linked), we can plot the network :</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/showNp.html">showNp</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignette_files/figure-html/unnamed-chunk-11-1.png" width="768">
+Specifying a probability cutoff (the minimal probability for which we
+can say that two genes are linked), we can plot the network :</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/showNetwork.html">showNetwork</a></span><span class="op">(</span><span class="va">result</span>,<span class="fl">0.3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/showNetwork.html">showNetwork</a></span><span class="op">(</span><span class="va">result</span>,<span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-12-1.png" width="768"></p>
-<p>In this plot, the diameter of a node increases with the number of its children whereas the color is a function of the probability for each gene of being a hub.</p>
+<p>In this plot, the diameter of a node increases with the number of its
+children whereas the color is a function of the probability for each
+gene of being a hub.</p>
 <p>You can also have a look on the error :</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">dist</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">dist</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-13-1.png" width="768"></p>
 </div>
-<div id="using-abc-algorithm-with-full-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-abc-algorithm-with-full-options" class="anchor"></a>Using ABC algorithm with full options</h2>
-<p>You can specify all the arguments of the ABC function: more details in the help manual.</p>
+<div class="section level3">
+<h3 id="using-abc-algorithm-with-full-options">Using ABC algorithm with full options<a class="anchor" aria-label="anchor" href="#using-abc-algorithm-with-full-options"></a>
+</h3>
+<p>You can specify all the arguments of the ABC function: more details
+in the help manual.</p>
 <p>For example :</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">result</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/abc.html">abc</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">M</span>,
-            clust_coeffs<span class="op">=</span><span class="fl">0.33</span>, <span class="co">#you can specify more than one clustering coefficient</span>
-            tolerance<span class="op">=</span><span class="fl">3.5</span>, <span class="co">#maximal distance between simulated and real data</span>
-            <span class="co"># to accept the network</span>
-            number_hubs<span class="op">=</span><span class="fl">3</span>,<span class="co">#the number of hubs</span>
-            iterations<span class="op">=</span><span class="fl">10</span>, <span class="co">#number of iterations</span>
-            number_networks<span class="op">=</span><span class="fl">1000000</span>,<span class="co">#number of network simulated at each iteration</span>
-            hub_probs<span class="op">=</span><span class="cn">NA</span>,<span class="co">#specify the a priori probabilty for each gene to be a hub</span>
-            neighbour_probs<span class="op">=</span><span class="cn">NA</span>,<span class="co">#specify the a priori probability for each couple</span>
-            <span class="co">#of gene to be linked</span>
-            is_probs<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="co">#set this last option to one.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">result</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/abc.html">abc</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">M</span>,</span>
+<span>            clust_coeffs<span class="op">=</span><span class="fl">0.33</span>, <span class="co">#you can specify more than one clustering coefficient</span></span>
+<span>            tolerance<span class="op">=</span><span class="fl">3.5</span>, <span class="co">#maximal distance between simulated and real data</span></span>
+<span>            <span class="co"># to accept the network</span></span>
+<span>            number_hubs<span class="op">=</span><span class="fl">3</span>,<span class="co">#the number of hubs</span></span>
+<span>            iterations<span class="op">=</span><span class="fl">10</span>, <span class="co">#number of iterations</span></span>
+<span>            number_networks<span class="op">=</span><span class="fl">1000000</span>,<span class="co">#number of network simulated at each iteration</span></span>
+<span>            hub_probs<span class="op">=</span><span class="cn">NA</span>,<span class="co">#specify the a priori probabilty for each gene to be a hub</span></span>
+<span>            neighbour_probs<span class="op">=</span><span class="cn">NA</span>,<span class="co">#specify the a priori probability for each couple</span></span>
+<span>            <span class="co">#of gene to be linked</span></span>
+<span>            is_probs<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="co">#set this last option to one.</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -298,11 +336,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Frederic Bertrand, Myriam Maumy-Bertrand.</p>
+  <p></p>
+<p>Developed by Frederic Bertrand, Myriam Maumy-Bertrand.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -310,6 +350,8 @@
 
   
 
+
+  
 
   </body>
 </html>

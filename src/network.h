@@ -1,7 +1,7 @@
 /*
  *Represents a structure for a complete genetic network.
  * 2015. Author K.Musayeva <khmusayeva@gmail.com>
- * 2019. Fixes and updates by F. Bertrand <fbertran@math.unistra.fr>
+ * 2019. Fixes and updates by F. Bertrand <frederic.bertrand@utt.fr>
  * Copyright (c) Universite de Strasbourg and CNRS
  */
 
@@ -14,10 +14,10 @@ typedef struct Network_str {
         Graph *G;
         Pool *pool;
         int number_of_nodes;
-        void (*initV)();
-        void (*initH)();
-        void (*initGraph)();
-        void (*initPool)();
+        void (*initV)(struct Network_str *self);
+        void (*initH)(struct Network_str *self);
+        void (*initGraph)(struct Network_str *self);
+        void (*initPool)(struct Network_str *self);
         void (*updateV)(struct Network_str *self, int n);
         void (*shuffleV)(struct Network_str *self);
         void (*cleanup)(struct Network_str *self);

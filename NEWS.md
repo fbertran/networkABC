@@ -1,3 +1,7 @@
+# networkABC 0.8-1
+
+* Fix warnings in C code as requested by CRAN maintainers.
+
 # networkABC 0.8-0
 
 * Add badges, logo and update pkgdown site

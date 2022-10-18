@@ -13,13 +13,12 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/fbertran/networkABC/workflows/R-CMD-check/badge.svg)](https://github.com/fbertran/networkABC/actions)
-[![Codecov test coverage](https://codecov.io/gh/fbertran/networkABC/branch/master/graph/badge.svg)](https://codecov.io/gh/fbertran/networkABC?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/fbertran/networkABC/branch/master/graph/badge.svg)](https://app.codecov.io/gh/fbertran/networkABC?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/networkABC)](https://cran.r-project.org/package=networkABC)
 [![GitHub Repo stars](https://img.shields.io/github/stars/fbertran/networkABC?style=social)](https://github.com/fbertran/networkABC)
 [![DOI](https://zenodo.org/badge/169994404.svg)](https://zenodo.org/badge/latestdoi/169994404)
 <!-- badges: end -->
-
 
 The goal of `networkABC` is to provide **an inference tool based on approximate Bayesian computation** to decipher network data and assess the strength of their inferred links.
 
@@ -39,7 +38,11 @@ Up to now, Approximate Bayesian Computation (ABC) algorithms have been scarcely 
 It can be used, for instance, for elucidating gene regulatory network, which is an important step towards understanding the normal cell physiology and complex pathological phenotype. Reverse-engineering consists in using gene expressions over time or over different experimental conditions to discover the structure of the gene network in a targeted cellular process. The fact that gene expression data are usually noisy, highly correlated, and have high dimensionality explains the need for specific statistical methods to reverse engineer the underlying network. 
 
 
+The package was accepted for presentation at the the useR! 2021 international conference. A technical note for the package was created and published on the website of the conference. It can be accessed  here: [https://user2021.r-project.org/participation/technical_notes/t164/technote/](https://user2021.r-project.org/participation/technical_notes/t164/technote/). 
+
+
 This website and these examples were created by F. Bertrand and M. Maumy-Bertrand.
+
 
 ## Installation
 

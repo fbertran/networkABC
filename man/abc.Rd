@@ -33,7 +33,7 @@ abc(
 
 \item{neighbour_probs}{: this is the matrix of neighbour probabilities of size number_nodes*number_nodes}
 
-\item{is_probs}{: this needs to be set either to one (if you specify hub_probs and neighbour_probs) or to zero (if neither probabilities are specified). Attention: you should specify both hub_probs and neighbour_probs if is_probs is one. If is_prob is zero these arrays should simply indicate an array of a specified size..}
+\item{is_probs}{: this needs to be set either to one (if you specify hub_probs and neighbour_probs) or to zero (if neither probabilities are specified). Warning: you should specify both hub_probs and neighbour_probs if is_probs is one. If is_prob is zero these arrays should simply indicate an array of a specified size..}
 }
 \description{
 ABC algorithm for network reverse-engineering
