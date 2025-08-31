@@ -21,7 +21,7 @@ abc(
 
 \item{clust_coeffs}{: one dimensional array of size clust_size of clustering coefficients (these clustering coefficient are tested in the ABc algorithm).}
 
-\item{tolerance}{: a real value based for the tolerance between  the generated networks and the reference network}
+\item{tolerance}{: a positive real value based for the tolerance between the generated networks and the reference network}
 
 \item{number_hubs}{: number of hubs in the network}
 

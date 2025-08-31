@@ -3,7 +3,7 @@
 #' @name abc
 #' @param data : Any microarray data in the form of a matrix (rows are genes and columns are time points)
 #' @param clust_coeffs : one dimensional array of size clust_size of clustering coefficients (these clustering coefficient are tested in the ABc algorithm).
-#' @param tolerance : a real value based for the tolerance between  the generated networks and the reference network
+#' @param tolerance : a positive real value based for the tolerance between the generated networks and the reference network
 #' @param number_hubs : number of hubs in the network
 #' @param iterations : number of times to repeat ABC algorithm
 #' @param number_networks : number of generated networks in each iteration of the ABC algorithm
@@ -33,6 +33,30 @@ abc<-function(data,
               neighbour_probs=NA,
               is_probs=1){
 
+  # --- validations d'arguments ---
+  if (!is.matrix(data) || !is.numeric(data)) {
+    stop("`data` must be a numeric matrix.", call. = FALSE)
+  }
+  if (any(!is.finite(data))) {
+    stop("`data` contains NA/NaN/Inf.", call. = FALSE)
+  }
+  
+  if (!missing(tolerance) && !is.null(tolerance) && !any(is.na(tolerance))) {
+    if (length(tolerance) != 1L) {
+      stop("`tolerance` must be a single finite numeric >0.", call. = FALSE)
+    }
+  }
+  
+  if (!missing(tolerance) && !is.null(tolerance) && !is.na(tolerance)) {
+    if (!is.numeric(tolerance) || is.na(tolerance) || !is.finite(tolerance)) {
+      stop("`tolerance` must be a single finite numeric >0.", call. = FALSE)
+    }
+    if (tolerance < 0 || tolerance == 0) {
+      stop("`tolerance` must be in >0.", call. = FALSE)
+    }
+  }
+  # --- fin validations ---
+  
 ngenes<-nrow(data)
 ntimes<-ncol(data)
 clust_size<-length(clust_coeffs)
@@ -43,7 +67,7 @@ if(prod(!is.na(neighbour_probs))!=1){neighbour_probs<-matrix(1,ngenes,ngenes)}
 
 iterations2<-iterations
 number_networks2<-number_networks
-if(is.na(tolerance)){
+if(is.na(tolerance) || is.null(tolerance)){
                 cat("First run of abc to find tolerance\n")
                 res222<-networkABC::abc(data,
                 clust_coeffs=clust_coeffs,
@@ -64,7 +88,7 @@ iterations<-iterations2
 number_networks<-number_networks2
 
 
-data<-c(matrix(t(data),30,1,byrow=TRUE))
+data<-c(matrix(t(data),ngenes*ntimes,1,byrow=TRUE))
 
 if(length(hub_probs)!=ngenes){stop("The length of hub_probs should be equal to the number of genes")}
 if(length(neighbour_probs)!=(ngenes^2)){stop("neighbour_probs should be a squared matrix of size nb of genes * nb of genes")}

@@ -4,23 +4,22 @@ titl <- meta$Title
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
 vers <- paste("R package version", meta$Version)
 
-citEntry(entry="Manual",
+bibentry(bibtype="Manual",
          title = titl,
-         author = personList(as.person("F. Bertrand"), 
-                             as.person("M. Maumy-Bertrand")), 
-	 publisher = "manual",
+         author = c(person(given = "Frederic", family= "Bertrand"), 
+                    person(given = "Myriam", family= "Maumy-Bertrand")),
          year         = year,
          note         = vers,
-         url          = "https://fbertran.github.io/homepage/",
+         url          = "https://CRAN.R-project.org/package=networkABC",
          textVersion = 
-         paste("Frederic Bertrand and Myriam Maumy-Bertrand (",year ,"). ", 
+         paste("Frédéric Bertrand and Myriam Maumy-Bertrand (",year ,"). ", 
                titl, ", ", vers, ".", sep=""
                )
 )
 
-citEntry(entry="article",
+bibentry(bibtype="article",
          title = "Network Reverse Engineering with Approximate Bayesian Computation",
-         author = personList(as.person("M. Maumy"), as.person("F. Bertrand")),
+         author = c(person(given = "Myriam", family= "Maumy-Bertrand"), person(given = "Frederic", family= "Bertrand")),
 	       journal = "user! 2021",
          year         = 2021,
          note         = "Zurich",

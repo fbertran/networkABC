@@ -39,3 +39,13 @@ genlogo.R
 ^vignettes/.*_cache$
 ^vignettes/.*_files$
 ^\.github$
+
+^coverage$
+^coverage\.xml$
+^coverage/.*$
+^networkABC_covr_nreg/.*$
+^\.github/.*$
+^scripts$
+^scripts/.*$
+^nonreg$
+^nonreg/.*$

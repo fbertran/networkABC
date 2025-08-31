@@ -1,3 +1,9 @@
+# networkABC 0.9-0
+
+* Added unit tests
+* Improved C code : error catching and contiguous 2D allocation
+* Fixed citation file
+
 # networkABC 0.8-1
 
 * Fix warnings in C code as requested by CRAN maintainers.

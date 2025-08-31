@@ -131,5 +131,6 @@ myImagePlot <- function(x, ...){
         xaxt="n")
   
   layout(1)
+  invisible(x)
 }
 # ----- END plot function ----- #

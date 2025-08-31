@@ -49,14 +49,14 @@ This website and these examples were created by F. Bertrand and M. Maumy-Bertran
 You can install the released version of networkABC from [CRAN](https://CRAN.R-project.org) with:
 
 
-```r
+``` r
 install.packages("networkABC")
 ```
 
 You can install the development version of networkABC from [github](https://github.com) with:
 
 
-```r
+``` r
 devtools::install_github("fbertran/networkABC")
 ```
 
@@ -64,7 +64,7 @@ devtools::install_github("fbertran/networkABC")
 
 The `network_gen` allows to simulate networks with given clustering coefficient.
 
-```r
+``` r
 set.seed(314)
 library(networkABC)
 resnet <- network_gen(10,1)
@@ -91,7 +91,7 @@ resnet
 
 The `abc` function performs the network reverse engineering with Approximate Bayesian Computation.
 
-```r
+``` r
 set.seed(314)
 M10<-matrix(rnorm(30),10,3)
 result<-abc(data=M10)
@@ -160,11 +160,14 @@ result<-abc(data=M10)
 
 The `showHp` function plots the hub probabilities.
 
-```r
+``` r
 showHp(result)
 ```
 
-<img src="man/figures/README-showHp-1.png" title="plot of chunk showHp" alt="plot of chunk showHp" width="100%" />
+<div class="figure">
+<img src="man/figures/README-showHp-1.png" alt="plot of chunk showHp" width="100%" />
+<p class="caption">plot of chunk showHp</p>
+</div>
 
 ```
 #>   gene.hubs hubs.proba
@@ -175,16 +178,22 @@ showHp(result)
 
 The `showNp` function plots the neighbourhood probabilities.
 
-```r
+``` r
 showNp(result)
 ```
 
-<img src="man/figures/README-showNp-1.png" title="plot of chunk showNp" alt="plot of chunk showNp" width="100%" />
+<div class="figure">
+<img src="man/figures/README-showNp-1.png" alt="plot of chunk showNp" width="100%" />
+<p class="caption">plot of chunk showNp</p>
+</div>
 
 The `showNetwork` function plots the final network.
 
-```r
+``` r
 showNetwork(result,.2)
 ```
 
-<img src="man/figures/README-showNetwork-1.png" title="plot of chunk showNetwork" alt="plot of chunk showNetwork" width="100%" />
+<div class="figure">
+<img src="man/figures/README-showNetwork-1.png" alt="plot of chunk showNetwork" width="100%" />
+<p class="caption">plot of chunk showNetwork</p>
+</div>

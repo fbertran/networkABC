@@ -1,54 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/vignette.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/abc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/clusteringCoefficient.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/localClusteringCoefficient.html</loc>
-  </url>
-  <url>
-    <loc>/reference/netsimul.html</loc>
-  </url>
-  <url>
-    <loc>/reference/networkABC.html</loc>
-  </url>
-  <url>
-    <loc>/reference/network_gen.html</loc>
-  </url>
-  <url>
-    <loc>/reference/resabc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/showHp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/showNetwork.html</loc>
-  </url>
-  <url>
-    <loc>/reference/showNp.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://fbertran.github.io/networkABC/404.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/articles/index.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/articles/vignette.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/authors.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/index.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/news/index.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/abc.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/clusteringCoefficient.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/index.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/localClusteringCoefficient.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/netsimul.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/networkABC-package.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/network_gen.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/resabc.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/showHp.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/showNetwork.html</loc></url>
+<url><loc>https://fbertran.github.io/networkABC/reference/showNp.html</loc></url>
 </urlset>
+

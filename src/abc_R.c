@@ -5,12 +5,16 @@
  * Copyright (c) Universite de Strasbourg and CNRS
  */
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "alloc2d.h"
 #include <math.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <time.h>
+#include <R.h> /* for GetRNGstate and PutRNGstate */
+#include <R_ext/Utils.h>  /* R_CheckUserInterrupt */
 #include <R_ext/Print.h>
 #include "graph.h"
 #include "pool.h"
@@ -18,11 +22,8 @@
 #include "network_random_R.h"
 #include "utils.h"
 #define SQUARE(x) (x*x)
-//for GetRNGstate and PutRNGstate
-#include <R.h>
 //for unif_rand
 #include <Rmath.h>
-
 
 
 /**
@@ -168,14 +169,18 @@ void generateOmegaFromNetwork(Graph *G, double *omega, int number_genes, int min
         }
 
 
-
 /**
 * Reads the omega matrix from the file
 */
 int readOmega(char *input, double *omega, int number_genes) {
-        double entry;
-        int row, col;
 
+  double entry;
+  int row, col;
+
+  if (number_genes <= 0) {
+    Rf_error("readOmega: number_genes must be > 0 (got %d).", number_genes);
+  }
+  
 	FILE* fi = fopen(input, "r");
 	if(fi == NULL) {
 	  // Updated to Rprintf to cope with CRAN requirements
@@ -185,16 +190,19 @@ int readOmega(char *input, double *omega, int number_genes) {
 
         for(row=0;row<number_genes;row++) {
            for(col=0;col<number_genes;col++) {
-             if (fscanf(fi, "%lf", &entry))
-               ;
-                omega[col+number_genes*row]=entry;
-                   }
-                }
+             /* leading space in format skips any whitespace/newlines */
+             int rc = fscanf(fi, " %lf", &entry);
+             if (rc != 1) {
+               fclose(fi);
+               Rf_error("readOmega: failed to read omega[%d,%d] as double (rc=%d).", row, col, rc);
+               }
+             omega[(size_t)col+(size_t)number_genes*(size_t)row]=entry;
+             }
+           }
 
         fclose(fi);
 	return(0);
 	}
-
 
 
 /**
@@ -266,54 +274,58 @@ void simulateDataOneStepBack(double **data, double **simulated_data, int number_
 /**
  * Generates micro-array data given the first time step
  * */
-void generateData(char *input, int number_genes, int number_times, double ***data, double *omega, double *F) {
+void generateData(char *input, 
+                  int number_genes, 
+                  int number_times, 
+                  double ***data, 
+                  double **data_block_out,
+                  double *omega, 
+                  double *F) {
 
-	//char buf[2000]; removed definition due to warning: unused variable 'buf' [-Wunused-variable]
-        FILE* fi = fopen(input, "r");
-  // Updated to Rprintf to cope with CRAN requirements
-  if(fi == NULL) {
-                Rprintf("Cannot open the file: %s\n", input);
-             }
-      
-
-
-	*data=(double **)malloc(number_genes*sizeof(double));
-        int i;
-        for(i=0; i<number_genes; ++i) {
-		(*data)[i] = (double*) calloc(number_times, sizeof(double));
-		}
-
-        double entry;
-	for(i=0; i<number_genes; i++) {
-                if(fscanf(fi, "%lf", &entry))
-                  ;
-		(*data)[i][0]=entry;
-                //microarray[i]=entry;
-                //printf("%lf\n", (*data)[i][0]);
-                }
-
-        fclose(fi);
-
-	//int number_of_clusters=number_genes; removed definition due to warning: unused variable 'number_of_clusters' [-Wunused-variable]
-	int *gene_to_cluster=malloc(number_genes*sizeof(int));
-	for(i=0;i<number_genes;++i) {
-		gene_to_cluster[i]=i+1;
-		}
-
-	int j,t;
-	for(t=1; t<number_times; t++) {
-		for(i=0; i<number_genes; i++) {
-			for(j=0; j<number_genes; j++) {
-					(*data)[i][t]+=omega[i+j*number_genes]*(*data)[j][t-1];
-                       		}
-			}
-
-		}
-	
-	free(gene_to_cluster);	
-
-	}
-
+  if (number_genes <= 0 || number_times <= 0) {
+    Rf_error("generateData: number_genes and number_times must be > 0 (got %d, %d).",
+             number_genes, number_times);
+  }
+  //char buf[2000]; removed definition due to warning: unused variable 'buf' [-Wunused-variable]`
+  
+  FILE* fi = fopen(input, "r");
+  if (fi == NULL) {
+    // Updated to Rprintf to cope with CRAN requirements
+    Rf_error("generateData: cannot open file '%s': %s", input, strerror(errno));
+    }
+  
+  double **M; double *M_block = NULL;
+  if (alloc2d_contig(&M, &M_block, number_genes, number_times) != 0) {
+    fclose(fi);
+    Rf_error("generateData: out of memory.");
+  }
+  *data = M;
+  if (data_block_out) *data_block_out = M_block;
+  
+  /* lecture t = 0 (a double per gene) */
+  for (int i = 0; i < number_genes; ++i) {
+    double entry; int rc = fscanf(fi, " %lf", &entry);
+    if (rc != 1) {
+      fclose(fi);
+      free2d_contig(M, M_block);
+      Rf_error("generateData: failed to read data[%d,0] (rc=%d).", i, rc);
+    }
+    M[i][0] = entry;
+  }
+  fclose(fi);
+  
+  /* propagation t >= 1 ; Omega[i,j] stockée en colonne-major: i + n*j */
+  for (int t = 1; t < number_times; ++t) {
+    if ((t & 0x3F) == 0) R_CheckUserInterrupt();
+    for (int i = 0; i < number_genes; ++i) {
+      double acc = 0.0;
+      for (int j = 0; j < number_genes; ++j) {
+        acc += omega[(size_t)i + (size_t)number_genes * (size_t)j] * M[j][t-1];
+      }
+      M[i][t] = acc;
+    }
+  }
+}  
 
 
 

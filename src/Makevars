@@ -1,1 +1,4 @@
 #PKG_CFLAGS=-D_FORTIFY_SOURCE=2 -Wstrict-prototypes -Wdeprecated-non-prototype
+# PKG_CFLAGS = -Wall -Wextra -Wstrict-prototypes -pedantic -O3
+# Optionnel :
+# PKG_CFLAGS += -Wno-unused-parameter -Wpointer-arith -flto
