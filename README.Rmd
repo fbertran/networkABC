@@ -16,9 +16,13 @@ knitr::opts_chunk$set(
 ----------------
 
 # Network Reverse Engineering with Approximate Bayesian Computation
+
 ## Frédéric Bertrand and Myriam Maumy-Bertrand
 
+<https://doi.org/10.32614/CRAN.package.networkABC>
+
 <!-- badges: start -->
+[![DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.networkABC-blue.svg)](https://doi.org/10.32614/CRAN.package.networkABC)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/fbertran/networkABC/workflows/R-CMD-check/badge.svg)](https://github.com/fbertran/networkABC/actions)
@@ -26,7 +30,6 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/networkABC)](https://cran.r-project.org/package=networkABC)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/networkABC)](https://cran.r-project.org/package=networkABC)
 [![GitHub Repo stars](https://img.shields.io/github/stars/fbertran/networkABC?style=social)](https://github.com/fbertran/networkABC)
-[![DOI](https://zenodo.org/badge/169994404.svg)](https://zenodo.org/badge/latestdoi/169994404)
 <!-- badges: end -->
 
 The goal of `networkABC` is to provide **an inference tool based on approximate Bayesian computation** to decipher network data and assess the strength of their inferred links.

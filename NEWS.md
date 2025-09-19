@@ -1,3 +1,8 @@
+# networkABC 0.9-1
+
+* Maintainer email updated
+* Added package doi
+
 # networkABC 0.9-0
 
 * Added unit tests

@@ -1,7 +1,7 @@
 /*
  *Represents a structure for a complete genetic network.
  * 2015. Author K.Musayeva <khmusayeva@gmail.com>
- * 2019. Fixes and updates by F. Bertrand <frederic.bertrand@utt.fr>
+ * 2019. Fixes and updates by F. Bertrand <frederic.bertrand@lecnam.net>
  * Copyright (c) Universite de Strasbourg and CNRS
  */
 

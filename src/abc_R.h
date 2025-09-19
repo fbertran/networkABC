@@ -1,5 +1,5 @@
 //
-// 2019-02-20. Author F. Bertrand <frederic.bertrand@utt.fr>
+// 2019-02-20. Author F. Bertrand <frederic.bertrand@lecnam.net>
 // Copyright (c) Universite de Strasbourg and CNRS
 //
   
